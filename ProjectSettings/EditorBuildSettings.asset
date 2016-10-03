@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/MenuImgGallery.unity
   - enabled: 1
     path: Assets/MenuCamera.unity
+  - enabled: 1
+    path: Assets/MenuNarrGallery.unity
