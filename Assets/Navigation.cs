@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class navigation : MonoBehaviour
+public class Navigation : MonoBehaviour
 {
 
     public void LoadScene(string SceneName)
