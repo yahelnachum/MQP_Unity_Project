@@ -37,9 +37,20 @@ public class Webcam : MonoBehaviour {
 		img.texture = mCamera;
 		mCamera.Play ();
 
-		obj.transform.localScale = new Vector3 (-1f*2f, 1f*0.5f, 1f);
+		Debug.Log (obj.transform.localScale);
+		//obj.transform.localScale = new Vector3 (-1f, 1f, 1f);
 		int cwCamera = mCamera.videoRotationAngle;
 		obj.transform.localRotation = Quaternion.AngleAxis (-cwCamera*1f, Vector3.back);
+		img.uvRect = new Rect(1f,0f,-1f,1f);
+
+		RectTransform rectT = (RectTransform) obj.transform;
+		float width = rectT.rect.width;
+		float height = rectT.rect.height;
+
+		rectT.localScale = new Vector3 (height / width, width / height, 1f);
+		//obj.transform.localScale.Set (2f,2f,2f);// = new Vector3 (1f,1f,1f);
+		Debug.Log (((RectTransform)obj.transform).rect.width);
+
 		//obj.transform.localScale.Scale (new Vector3 (-1f, 1f, 1f));
 
 	}
