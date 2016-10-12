@@ -188,7 +188,7 @@ public class HttpRequest : MonoBehaviour {
 		return System.Text.Encoding.UTF8.GetBytes(str);
 	}
 
-	public static IEnumerator postClarifai(string pathToImage)
+	public static IEnumerator postClarifai(byte[] imageByte, Text text)
 	{
 
 		Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -204,7 +204,7 @@ public class HttpRequest : MonoBehaviour {
 		string token = JSON.Parse(www.text)["access_token"].Value;
 		Debug.Log("access_token: " + token);
 
-		byte[] image = System.IO.File.ReadAllBytes(pathToImage);
+		byte[] image = imageByte;//System.IO.File.ReadAllBytes(pathToImage);
 
 		HttpConfiguration[] configurations = new HttpConfiguration[1];
 		configurations[0] = new HttpConfiguration("encoded_data", "unityWebcam.jpg", BODY_CONTENT_TYPE_IMAGE_JPEG, image);
@@ -223,7 +223,19 @@ public class HttpRequest : MonoBehaviour {
 		yield return www;
 		checkWWWForError(www);
 
-		while (www.isDone == false) { }
+		//JSONNode array = JSON.Parse (www.text) ["meta"].AsObject;
+		JSONNode array1 = JSON.Parse(www.text)["results"].AsArray[0];
+		JSONNode array2 = array1 ["result"].AsObject;
+		JSONNode array3 = array2 ["tag"].AsObject;
+		JSONArray array4 = array3["classes"].AsArray;
+
+		string s = "";
+		for (int i = 0; i < array4.Count; i++) {
+			s += array4 [i].Value + "|";
+			//Debug.Log(array4[i].Value);
+		}
+
+		text.text = s;
 
 		Debug.Log(www.text);
 	}
@@ -278,14 +290,23 @@ public class HttpRequest : MonoBehaviour {
 		Debug.Log(response);
 	}
 
-	public static IEnumerator postWatson(string pathToImage)
+	public static IEnumerator postWatson(byte[] imageByte, Text text)
 	{
 		WWWForm form = new WWWForm();
-		WWW www = new WWW("https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=68afcccf311899e6f6cc6064de624901456c180a&version=2016-05-20", System.IO.File.ReadAllBytes(pathToImage));// form);
+		WWW www = new WWW("https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=68afcccf311899e6f6cc6064de624901456c180a&version=2016-05-20", imageByte);// form);
 
 		yield return www;
 		checkWWWForError(www);
 
+		JSONNode array = JSON.Parse (www.text) ["images"].AsArray [0];
+		JSONNode array1 = array ["classifiers"].AsArray [0];
+		JSONArray array2 = array1 ["classes"].AsArray;
+
+		string s = "";
+		for (int i = 0; i < array2.Count; i++) {
+			s += array2 [i].AsObject ["class"].Value;
+		}
+		text.text = s;
 		Debug.Log(www.text);
 	}
 
