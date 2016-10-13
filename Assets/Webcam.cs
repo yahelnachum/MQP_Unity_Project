@@ -10,7 +10,7 @@ public class Webcam : MonoBehaviour {
 
     float sizeMultiplier = -0.001F;
     // Use this for initialization
-    void Start () {
+    public void startCamera() {
 		if (mCamera == null) {
 			WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -42,25 +42,15 @@ public class Webcam : MonoBehaviour {
 
 			rectT.localScale = new Vector3 (height / width, width / height, 1f);
 			Debug.Log (((RectTransform)obj.transform).rect.width);
-		}
+		} else {
+            mCamera.Play();
+        }
 	}
 
 	public void stopCamera(){
 		mCamera.Stop ();
-		mCamera = null;
 	}
 		
-    void Update () {
-
-    }
-
-    /*void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 70, 50, 30), "Click"))
-            TakeSnapShot();
-
-    }*/
-
 	public void TakeSnapShot()
     {
 		GameObject textCloud = GameObject.Find ("Cloud");
