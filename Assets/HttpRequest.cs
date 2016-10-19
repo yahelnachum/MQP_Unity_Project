@@ -229,13 +229,32 @@ public class HttpRequest : MonoBehaviour {
 		JSONNode array3 = array2 ["tag"].AsObject;
 		JSONArray array4 = array3["classes"].AsArray;
 
+		Text[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
+		bool foundCurrentObjects = false;
 		string s = "";
 		for (int i = 0; i < array4.Count; i++) {
 			s += array4 [i].Value + "|";
 			//Debug.Log(array4[i].Value);
-		}
 
+			for (int j = 0; j < currentObjects.Length; j++) {
+				if (array4 [i].Value.CompareTo (currentObjects [j].text) == 0)
+					foundCurrentObjects = true;
+			}
+		}
+			
 		text.text = s;
+
+		if (foundCurrentObjects) {
+			ObjectList.getInstance ().pickCurrentObjects ();
+			GameObject pCamera = GameObject.Find ("pCamera");
+			GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
+			Debug.Log (pMain);
+			Debug.Log (pCamera);
+
+			Webcam.stopCamera ();
+			pMain.SetActive (true);
+			pCamera.SetActive (false);
+		}
 
 		Debug.Log(www.text);
 	}
