@@ -252,8 +252,18 @@ public class HttpRequest : MonoBehaviour {
 			Debug.Log (pCamera);
 
 			Webcam.stopCamera ();
-			pMain.SetActive (true);
+
 			pCamera.SetActive (false);
+
+			GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1));
+			if (nextNarrative != null) {
+				nextNarrative.SetActive (true);
+
+				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
+				PlayerData.getInstance ().saveData ();
+			} else {
+				pMain.SetActive (true);
+			}
 		}
 
 		Debug.Log(www.text);
