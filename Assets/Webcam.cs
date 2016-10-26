@@ -123,6 +123,14 @@ public class Webcam : MonoBehaviour{
 		rectT.localScale = new Vector3 (minX, minY, 1f);
 		mCamera.Stop ();
 	}
+
+	public void stopCamera1(){
+
+		// reset the pinch and zoom of the camera and stop streaming it
+		RectTransform rectT = (RectTransform)pCameraStream.transform;
+		rectT.localScale = new Vector3 (minX, minY, 1f);
+		mCamera.Stop ();
+	}
 		
 	/// <summary>
 	/// Takes a snap shot of the camera stream
