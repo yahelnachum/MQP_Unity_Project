@@ -1052,26 +1052,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355791379}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 519281171}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuInventory
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 593203175}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: pMain,pInventory
           m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1117,7 +1106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 519281166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &520045215
@@ -2241,7 +2230,7 @@ GameObject:
   - 222: {fileID: 717063638}
   - 114: {fileID: 717063637}
   - 114: {fileID: 717063636}
-  - 114: {fileID: 717063635}
+  - 114: {fileID: 717063639}
   m_Layer: 5
   m_Name: bAnalyze
   m_TagString: Untagged
@@ -2268,17 +2257,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: 5}
   m_SizeDelta: {x: -30, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &717063635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 717063633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237dd4715ac2745699ac2855ab3768d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &717063636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2318,8 +2296,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 717063635}
-        m_MethodName: TakeSnapShot
+      - m_Target: {fileID: 717063639}
+        m_MethodName: takeSnapshot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2364,6 +2342,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717063633}
+--- !u!114 &717063639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 717063633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &725181212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,7 +2399,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 725181212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &725181215
@@ -2452,28 +2441,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 593203175}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 725181214}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuNarrGallery
+          m_StringArgument: pInventory,pNarrative
           m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 1175917792}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &725181216
@@ -2744,7 +2722,7 @@ GameObject:
   - 114: {fileID: 986576121}
   - 114: {fileID: 986576120}
   m_Layer: 5
-  m_Name: bBack
+  m_Name: bInventoryBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2777,7 +2755,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 986576118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &986576121
@@ -2819,27 +2797,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 593203175}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 986576120}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuMain
+          m_StringArgument: pInventory,pMain
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1355791379}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3194,7 +3161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100534698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e87b386b3f4d4bbb806afe00f71eaab, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1114157819
@@ -3284,7 +3251,7 @@ GameObject:
   - 114: {fileID: 1160026216}
   - 114: {fileID: 1160026215}
   m_Layer: 0
-  m_Name: bBack
+  m_Name: bNarrativeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3317,7 +3284,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1160026213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1160026216
@@ -3359,28 +3326,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1175917792}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1160026215}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuInventory
+          m_StringArgument: pNarrative,pInventory
           m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 593203175}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1160026217
@@ -4139,7 +4095,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431095374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1431095377
@@ -4181,27 +4137,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 593203175}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1431095376}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuImgGallery
+          m_StringArgument: pInventory,pImageGallery
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2027049262}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -4513,7 +4458,7 @@ GameObject:
   - 114: {fileID: 1556557975}
   - 114: {fileID: 1556557974}
   m_Layer: 0
-  m_Name: bBack
+  m_Name: bImageGalleryBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4546,7 +4491,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1556557972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1556557975
@@ -4588,27 +4533,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2027049262}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1556557974}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuInventory
+          m_StringArgument: pImageGallery,pInventory
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 593203175}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -5007,8 +4941,7 @@ GameObject:
   - 222: {fileID: 1812252873}
   - 114: {fileID: 1812252872}
   - 114: {fileID: 1812252871}
-  - 114: {fileID: 1812252870}
-  - 114: {fileID: 1812252869}
+  - 114: {fileID: 1812252874}
   m_Layer: 5
   m_Name: bCancel
   m_TagString: Untagged
@@ -5035,28 +4968,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 5}
   m_SizeDelta: {x: -30, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1812252869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1812252867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237dd4715ac2745699ac2855ab3768d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1812252870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1812252867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1812252871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5096,8 +5007,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1812252869}
-        m_MethodName: stopCamera1
+      - m_Target: {fileID: 1812252874}
+        m_MethodName: stopCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5107,26 +5018,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 1275690629}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1812252874}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1355791379}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: pCamera,pMain
           m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -5164,6 +5064,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812252867}
+--- !u!114 &1812252874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1812252867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1851588451
 GameObject:
   m_ObjectHideFlags: 0
@@ -5380,8 +5291,7 @@ GameObject:
   - 222: {fileID: 1969635268}
   - 114: {fileID: 1969635267}
   - 114: {fileID: 1969635266}
-  - 114: {fileID: 1969635269}
-  - 114: {fileID: 1969635270}
+  - 114: {fileID: 1969635271}
   m_Layer: 5
   m_Name: bCamera
   m_TagString: Untagged
@@ -5447,29 +5357,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355791379}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1969635271}
+        m_MethodName: changePanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MenuCamera
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 1275690629}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: pMain,pCamera
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1969635270}
+      - m_Target: {fileID: 1969635271}
         m_MethodName: startCamera
         m_Mode: 1
         m_Arguments:
@@ -5515,7 +5414,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1969635264}
---- !u!114 &1969635269
+--- !u!114 &1969635271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5523,18 +5422,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969635264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edaf5813eb7295f48bdc38613efb0acb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1969635270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1969635264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237dd4715ac2745699ac2855ab3768d5, type: 3}
+  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1989097503

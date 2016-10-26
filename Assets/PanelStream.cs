@@ -10,6 +10,6 @@ public class PanelStream : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Webcam.pinchAndZoom ();
+		Webcam.getInstance().pinchAndZoom ();
 	}
 }

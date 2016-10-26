@@ -4,15 +4,30 @@ using System.Collections;
 
 public class Webcam : MonoBehaviour{
 
-    public static WebCamTexture mCamera = null;
-	public static GameObject pCameraStream;
+    public WebCamTexture mCamera = null;
+	public GameObject pCameraStream;
   
-	private static float maxZoom = 10.0f;
-	private static float minX;
-	private static float minY;
-	private static float maxX;
-	private static float maxY;
+	private float maxZoom = 10.0f;
+	private float minX;
+	private float minY;
+	private float maxX;
+	private float maxY;
 
+	private static Webcam webcam = null;
+
+	private Webcam(){}
+
+	public void Start(){
+		Webcam.getInstance();
+	}
+
+	public static Webcam getInstance(){
+		if (webcam == null) {
+			GameObject singleton = new GameObject ();
+			webcam = singleton.AddComponent<Webcam> ();
+		}
+		return webcam;
+	}
 
     /// <summary>
     /// Starts the camera
@@ -62,7 +77,7 @@ public class Webcam : MonoBehaviour{
 	/// <summary>
 	/// Pinches and zooms the panel.
 	/// </summary>
-	public static void pinchAndZoom(){
+	public void pinchAndZoom(){
 
 		if (mCamera != null) {
 
@@ -116,15 +131,7 @@ public class Webcam : MonoBehaviour{
 	/// <summary>
 	/// Stops the camera.
 	/// </summary>
-	public static void stopCamera(){
-
-		// reset the pinch and zoom of the camera and stop streaming it
-		RectTransform rectT = (RectTransform)pCameraStream.transform;
-		rectT.localScale = new Vector3 (minX, minY, 1f);
-		mCamera.Stop ();
-	}
-
-	public void stopCamera1(){
+	public void stopCamera(){
 
 		// reset the pinch and zoom of the camera and stop streaming it
 		RectTransform rectT = (RectTransform)pCameraStream.transform;
