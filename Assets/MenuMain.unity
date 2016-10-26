@@ -2062,7 +2062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadd5e5d7eaa242cfb3583e741713e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: 4900000, guid: 80e4d3828ac4848839c5cf54bf9eb1b5, type: 3}
+  objectListTextAsset: {fileID: 4900000, guid: 80e4d3828ac4848839c5cf54bf9eb1b5, type: 3}
+  acceptedTagsTextAsset: {fileID: 4900000, guid: ceac01839a59d4ba49a36bcfc7fd1c1c,
+    type: 3}
 --- !u!1 &683399107
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class ObjectList{
 	private static ObjectList instance = new ObjectList();
 
 	private string[] objects;
+	private AcceptedTags[] acceptedTags;
 	private Text[] currentObjects = new Text[3];
 
 	/// <summary>
@@ -29,11 +30,11 @@ public class ObjectList{
 	/// Initializes the instance of the ObjectList.
 	/// </summary>
 	/// <param name="asset">Asset.</param>
-	public void initialize(TextAsset asset){
+	public void initialize(TextAsset objectListTextAsset, TextAsset acceptedTagsTextAsset){
 
 		// get array of available objects
-		char[] splitters = { '\n', '\r' };
-		objects = asset.text.Split (splitters);
+		char[] lineSplitters = { '\n', '\r' };
+		objects = objectListTextAsset.text.Split (lineSplitters);
 
 		// get text objects from game
 		for (int i = 0; i < currentObjects.Length; i++) {
@@ -42,6 +43,16 @@ public class ObjectList{
 		}
 
 		pickCurrentObjects ();
+
+		char[] tagSplitters = { ',' };
+		string[] lines = acceptedTagsTextAsset.text.Split (lineSplitters);
+		acceptedTags = new AcceptedTags[lines.Length];
+
+		for (int i = 0; i < lines.Length; i++) {
+			string[] tags = lines [i].Split (tagSplitters);
+			acceptedTags [i] = new AcceptedTags (tags [0], tags);
+		}
+			
 	}
 
 	/// <summary>
@@ -86,5 +97,28 @@ public class ObjectList{
 	/// <returns>The current text objects the player is searching for.</returns>
 	public Text[] getCurrentObjects(){
 		return currentObjects;
+	}
+
+	public AcceptedTags[] getAcceptedTags(){
+		return acceptedTags;
+	}
+}
+
+public class AcceptedTags {
+
+	private string _acceptedTags;
+	private string[] _similarTags;
+
+	public AcceptedTags(string acceptedTags, string[] similarTags){
+		_acceptedTags = acceptedTags;
+		_similarTags = similarTags;
+	}
+
+	public string getAcceptedTag(){
+		return _acceptedTags;
+	}
+
+	public string[] getSimilarTags(){
+		return _similarTags;
 	}
 }

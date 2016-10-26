@@ -230,16 +230,40 @@ public class HttpRequest : MonoBehaviour {
 		JSONArray array4 = array3["classes"].AsArray;
 
 		Text[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
+		AcceptedTags[] acceptedTags = ObjectList.getInstance ().getAcceptedTags ();
 		bool foundCurrentObjects = false;
+
+		for (int i = 0; i < currentObjects.Length; i++) {
+			string currentObj = currentObjects [i].text;
+			for (int j = 0; j < acceptedTags.Length; j++) {
+				string acceptedTag = acceptedTags [j].getAcceptedTag();
+				string[] similarTags = acceptedTags [j].getSimilarTags ();
+
+				if (acceptedTag.CompareTo (currentObj) == 0) {
+
+					for(int k = 0; k < similarTags.Length; k++){
+						string similarTag = similarTags [k];
+
+						for (int l = 0; l < array4.Count; l++) {
+							string tagAnalyzed = array4 [l].Value;
+
+							if (tagAnalyzed.CompareTo (similarTag) == 0) {
+								foundCurrentObjects = true;
+
+								l = array4.Count;
+								k = similarTags.Length;
+								j = acceptedTags.Length;
+								i = currentObjects.Length;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		string s = "";
 		for (int i = 0; i < array4.Count; i++) {
 			s += array4 [i].Value + "|";
-			//Debug.Log(array4[i].Value);
-
-			for (int j = 0; j < currentObjects.Length; j++) {
-				if (array4 [i].Value.CompareTo (currentObjects [j].text) == 0)
-					foundCurrentObjects = true;
-			}
 		}
 			
 		text.text = s;
