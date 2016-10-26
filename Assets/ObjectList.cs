@@ -34,7 +34,7 @@ public class ObjectList{
 
 		// get array of available objects
 		char[] lineSplitters = { '\n', '\r' };
-		objects = objectListTextAsset.text.Split (lineSplitters);
+		objects = objectListTextAsset.text.Split (lineSplitters, System.StringSplitOptions.RemoveEmptyEntries);
 
 		// get text objects from game
 		for (int i = 0; i < currentObjects.Length; i++) {
