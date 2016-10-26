@@ -133,6 +133,8 @@ public class Webcam : MonoBehaviour{
 	/// </summary>
 	public void stopCamera(){
 
+        if (mCamera == null) return;
+
 		// reset the pinch and zoom of the camera and stop streaming it
 		RectTransform rectT = (RectTransform)pCameraStream.transform;
 		rectT.localScale = new Vector3 (minX, minY, 1f);
@@ -144,6 +146,9 @@ public class Webcam : MonoBehaviour{
 	/// </summary>
 	public void TakeSnapShot()
     {
+
+        if (mCamera == null) return;
+
 		// get the text objects for output of http POST responses
 		GameObject textCloud = GameObject.Find ("Cloud");
 		Text txtCloud = textCloud.GetComponent<Text> ();

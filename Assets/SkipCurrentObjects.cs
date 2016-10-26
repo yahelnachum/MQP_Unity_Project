@@ -6,7 +6,7 @@ public class SkipCurrentObjects : MonoBehaviour {
 
 	GameObject bSkip;
 	static float initialTime = 0f;
-	static const float waitSeconds = 1f; // 5 mins is 300f.
+	const float waitSeconds = 1f; // 5 mins is 300f.
 	// Use this for initialization
 	void Start () {
 
