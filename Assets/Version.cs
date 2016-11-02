@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Version : MonoBehaviour {
 
     // <branch> YYMMDD.hhmm
-    public const string VersionString = "HTTPCam 161026.1611";
+    public const string VersionString = "Tutorial 161101.2305";
 
 	// Use this for initialization
 	void Start () {

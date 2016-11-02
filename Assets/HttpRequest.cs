@@ -271,22 +271,11 @@ public class HttpRequest : MonoBehaviour {
 		if (foundCurrentObjects) {
 			ObjectList.getInstance ().pickCurrentObjects ();
 			GameObject pCamera = GameObject.Find ("pCamera");
-			GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
-			Debug.Log (pMain);
-			Debug.Log (pCamera);
+			GameObject pAugmentedReality = StartGame.findInactive ("pAugmentedReality", "vMenu");
 
 			Webcam.getInstance().stopCamera ();
 			pCamera.SetActive (false);
-
-			GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1));
-			if (nextNarrative != null) {
-				nextNarrative.SetActive (true);
-
-				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
-				PlayerData.getInstance ().saveData ();
-			} else {
-				pMain.SetActive (true);
-			}
+			pAugmentedReality.SetActive (true);
 		}
 
 		Debug.Log(www.text);
