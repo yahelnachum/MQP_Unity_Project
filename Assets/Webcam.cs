@@ -83,9 +83,6 @@ public class Webcam : MonoBehaviour{
 
 			// check that the player is using only two fingers
 			if (Input.touchCount == 2) {
-				Tutorial obj = new Tutorial ();
-				obj.changePanel ("pCameraStreamTutorial:deactivate");
-
 				// Store both touches.
 				Touch touchZero = Input.GetTouch (0);
 				Touch touchOne = Input.GetTouch (1);
