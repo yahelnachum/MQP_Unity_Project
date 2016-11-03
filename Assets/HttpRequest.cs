@@ -304,7 +304,7 @@ public class HttpRequest : MonoBehaviour {
 		Debug.Log(entireData.Length);
 
 		Dictionary<string, string> headers = new Dictionary<string, string>();
-		headers.Add("Authorization", "CloudSight PK2x9PRpXn-3BSAh6QRdpA");
+		headers.Add("Authorization", "CloudSight sSXwCsxn6h6KDlhv4e9iBw");
 		headers.Add("Content-Length", "" + (entireData.Length));
 		headers.Add("Content-Type","multipart/form-data; boundary=" + BODY_BOUNDARY);
 
@@ -324,7 +324,7 @@ public class HttpRequest : MonoBehaviour {
 			status = "";
 
 			headers = new Dictionary<string, string>();
-			headers.Add("Authorization", "CloudSight PK2x9PRpXn-3BSAh6QRdpA");
+			headers.Add("Authorization", "CloudSight sSXwCsxn6h6KDlhv4e9iBw");
 
 			www = new WWW("http://api.cloudsightapi.com/image_responses/" + token, null, headers);
 			yield return www;
@@ -340,6 +340,64 @@ public class HttpRequest : MonoBehaviour {
 		}
 
 		Debug.Log(response);
+
+		char[] spaceSplitter = { ' ' };
+		response = response.Replace ("'s", "");
+		string[] responses = response.Split (spaceSplitter);
+		Text[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
+		AcceptedTags[] acceptedTags = ObjectList.getInstance ().getAcceptedTags ();
+		bool foundCurrentObjects = false;
+
+		for (int i = 0; i < currentObjects.Length; i++) {
+			string currentObj = currentObjects [i].text;
+			for (int j = 0; j < acceptedTags.Length; j++) {
+				string acceptedTag = acceptedTags [j].getAcceptedTag();
+				string[] similarTags = acceptedTags [j].getSimilarTags ();
+
+				if (acceptedTag.CompareTo (currentObj) == 0) {
+
+					for(int k = 0; k < similarTags.Length; k++){
+						string similarTag = similarTags [k];
+
+						for (int l = 0; l < responses.Length; l++) {
+							string tagAnalyzed = responses[l];
+
+							if (tagAnalyzed.CompareTo (similarTag) == 0) {
+								foundCurrentObjects = true;
+
+								l = responses.Length;
+								k = similarTags.Length;
+								j = acceptedTags.Length;
+								i = currentObjects.Length;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if (foundCurrentObjects) {
+			ObjectList.getInstance ().pickCurrentObjects ();
+			GameObject pCamera = GameObject.Find ("pCamera");
+			GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
+			Debug.Log (pMain);
+			Debug.Log (pCamera);
+
+			Webcam.getInstance().stopCamera ();
+			pCamera.SetActive (false);
+
+			GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1));
+			if (nextNarrative != null) {
+				nextNarrative.SetActive (true);
+
+				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
+				PlayerData.getInstance ().saveData ();
+			} else {
+				pMain.SetActive (true);
+			}
+		}
+
+
 	}
 
 	public static IEnumerator postWatson(byte[] imageByte, Text text)

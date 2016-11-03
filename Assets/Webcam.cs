@@ -185,8 +185,8 @@ public class Webcam : MonoBehaviour{
 		//Debug.Log (Application.persistentDataPath);
 		//System.IO.File.WriteAllBytes(Application.persistentDataPath+"/unityWebcam.jpg", snap.EncodeToJPG());
 
-		//StartCoroutine(HttpRequest.postCloudSight(snap.EncodeToJPG(), txtCloud));//Application.dataPath + "/unityWebcam.jpg", txt));
 		//StartCoroutine(HttpRequest.postWatson(snap.EncodeToJPG(), txtWatson));
 		StartCoroutine(HttpRequest.postClarifai(snap.EncodeToJPG(), txtClarifai));
+		StartCoroutine(HttpRequest.postCloudSight(snap.EncodeToJPG(), txtCloud));
     }
 }
