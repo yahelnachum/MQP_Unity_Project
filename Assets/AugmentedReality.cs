@@ -30,7 +30,7 @@ public class AugmentedReality : MonoBehaviour {
 			rectT.localScale = new Vector3 (height / width, width / height, 1f);
 
 			augmentedRealityInstance.img = augmentedRealityInstance.pARImage.AddComponent<RawImage> ();
-			augmentedRealityInstance.img.uvRect = new Rect (1f, 0f, -1f, 1f);
+			augmentedRealityInstance.img.uvRect = new Rect (1f, 0f, -1f, -1f);
 
 		}
 
