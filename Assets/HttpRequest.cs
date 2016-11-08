@@ -66,9 +66,9 @@ public class HttpRequest : MonoBehaviour {
 		// get the text objects for output of http POST responses
 		//GameObject textWatson = GameObject.Find ("Watson");
 		//Text txtWatson = textWatson.GetComponent<Text> ();
-		GameObject textClarifai = StartGame.findInactive ("ClarifaiOutput");
+		GameObject textClarifai = StartGame.findInactive ("ClarifaiOutput", "vMenu");
 		txtClarifai = textClarifai.GetComponent<Text> ();
-		GameObject textCloud = StartGame.findInactive ("CloudSightOutput");
+		GameObject textCloud = StartGame.findInactive ("CloudSightOutput", "vMenu");
 		txtCloud = textCloud.GetComponent<Text> ();
 
 	}
@@ -374,7 +374,7 @@ public class HttpRequest : MonoBehaviour {
 			Webcam.getInstance().stopCamera ();
 			pCamera.SetActive (false);
 
-			GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1));
+			GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1), "vMenu");
 			if (nextNarrative != null) {
 				nextNarrative.SetActive (true);
 
