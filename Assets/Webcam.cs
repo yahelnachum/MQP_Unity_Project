@@ -6,7 +6,7 @@ public class Webcam : MonoBehaviour{
 
     public WebCamTexture mCamera = null;
 	public GameObject pCameraStream;
-  
+	public int cwCamera = 0;
 	private float maxZoom = 10.0f;
 	private float minX;
 	private float minY;
@@ -52,7 +52,7 @@ public class Webcam : MonoBehaviour{
 				mCamera.Play ();
 
 				// rotate panel to match mobile orientation
-				int cwCamera = mCamera.videoRotationAngle;
+				cwCamera = mCamera.videoRotationAngle;
 				pCameraStream.transform.localRotation = Quaternion.AngleAxis (-cwCamera * 1f, Vector3.back);
 				img.uvRect = new Rect (1f, 0f, -1f, 1f);
 
@@ -178,8 +178,8 @@ public class Webcam : MonoBehaviour{
 		snap.SetPixels(array);
         snap.Apply();
 
-		//Debug.Log (Application.persistentDataPath);
-		//System.IO.File.WriteAllBytes(Application.persistentDataPath+"/unityWebcam.jpg", snap.EncodeToJPG());
+		Debug.Log (Application.persistentDataPath);
+		System.IO.File.WriteAllBytes(Application.persistentDataPath+"/image"+PlayerData.getInstance().getCurrentNarrativeChunk()+".jpg", snap.EncodeToJPG());
 
 		HttpRequest.getInstance ().makeRequest (snap.EncodeToJPG ());
     }
