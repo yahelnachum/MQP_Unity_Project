@@ -149,13 +149,6 @@ public class Webcam : MonoBehaviour{
 
         if (mCamera == null) return;
 
-		// get the text objects for output of http POST responses
-		GameObject textCloud = GameObject.Find ("Cloud");
-		Text txtCloud = textCloud.GetComponent<Text> ();
-		GameObject textWatson = GameObject.Find ("Watson");
-		Text txtWatson = textWatson.GetComponent<Text> ();
-		GameObject textClarifai = GameObject.Find ("Clarifai");
-		Text txtClarifai = textClarifai.GetComponent<Text> ();
         Debug.Log("Taking a snapshot");
 
 		// crop the picture to fit with the scale of the pinch and zoom
@@ -185,8 +178,6 @@ public class Webcam : MonoBehaviour{
 		//Debug.Log (Application.persistentDataPath);
 		//System.IO.File.WriteAllBytes(Application.persistentDataPath+"/unityWebcam.jpg", snap.EncodeToJPG());
 
-		//StartCoroutine(HttpRequest.postWatson(snap.EncodeToJPG(), txtWatson));
-		StartCoroutine(HttpRequest.postClarifai(snap.EncodeToJPG(), txtClarifai));
-		StartCoroutine(HttpRequest.postCloudSight(snap.EncodeToJPG(), txtCloud));
+		HttpRequest.getInstance ().makeRequest (snap.EncodeToJPG ());
     }
 }

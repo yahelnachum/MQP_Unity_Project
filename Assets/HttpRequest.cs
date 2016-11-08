@@ -8,44 +8,83 @@ using UnityEngine.UI;
 
 public class HttpRequest : MonoBehaviour {
 
-	public const string EQUALS = "=";
-	public const string AND = "&";
+	private const string EQUALS = "=";
+	private const string AND = "&";
 
-	public const string HEADER_AUTHORIZATION = "Authorization";
-	public const string HEADER_AUTHORIZATION_CLOUDSIGHT = "CloudSight ";
-	public const string HEADER_AUTHORIZATION_CLARIFAI = "Bearer ";
+	private const string HEADER_AUTHORIZATION = "Authorization";
+	private const string HEADER_AUTHORIZATION_CLOUDSIGHT = "CloudSight ";
+	private const string HEADER_AUTHORIZATION_CLARIFAI = "Bearer ";
 
-	public const string HEADER_CONTENT_TYPE = "Content-Type";
-	public const string HEADER_CONTENT_TYPE_MULTIPART_FORM_DATA = "multipart/form-data; ";
-	public const string HEADER_BOUDARY = "boundary=";
+	private const string HEADER_CONTENT_TYPE = "Content-Type";
+	private const string HEADER_CONTENT_TYPE_MULTIPART_FORM_DATA = "multipart/form-data; ";
+	private const string HEADER_BOUDARY = "boundary=";
 
-	public const string BODY_BOUNDARY = "------------------------aa2af2f6902e7855";
-	public const string BODY_TWO_HYPHENS = "--";
-	public const string BODY_CR_LF = "\r\n";
-	public const string BODY_DOUBLE_QUOTES = "\"";
+	private const string BODY_BOUNDARY = "------------------------aa2af2f6902e7855";
+	private const string BODY_TWO_HYPHENS = "--";
+	private const string BODY_CR_LF = "\r\n";
+	private const string BODY_DOUBLE_QUOTES = "\"";
 
-	public const string BODY_CONTENT_TYPE = "Content-Type: ";
-	public const string BODY_CONTENT_DISPOSITION = "Content-Disposition: ";
-	public const string BODY_FORM_DATA = "form-data; ";
-	public const string BODY_NAME = "name=";
-	public const string BODY_FILE_NAME = "filename=";
-	public const string BODY_SEMICOLON_SPACE = "; ";
+	private const string BODY_CONTENT_TYPE = "Content-Type: ";
+	private const string BODY_CONTENT_DISPOSITION = "Content-Disposition: ";
+	private const string BODY_FORM_DATA = "form-data; ";
+	private const string BODY_NAME = "name=";
+	private const string BODY_FILE_NAME = "filename=";
+	private const string BODY_SEMICOLON_SPACE = "; ";
 
-	public const string BODY_CONTENT_TYPE_IMAGE_JPEG = "image/jpeg";
-	public const string BODY_CONTENT_TYPE_TEXT_PLAIN = "text/plain";
-	public const string BODY_CONTENT_PLACEHOLDER = "aoidfngoiefoi12097445";
+	private const string BODY_CONTENT_TYPE_IMAGE_JPEG = "image/jpeg";
+	private const string BODY_CONTENT_TYPE_TEXT_PLAIN = "text/plain";
+	private const string BODY_CONTENT_PLACEHOLDER = "aoidfngoiefoi12097445";
 
-	// Use this for initialization
-	void Start () { 
-		//StartCoroutine(postWatson(Application.dataPath + "/unityWebcam.jpg"));
-		//StartCoroutine(postCloudSight(Application.dataPath + "/unityWebcam.jpg"));
-		//StartCoroutine(postClarifai(Application.dataPath + "/unityWebcam.jpg"));
+	private const string CLOUDSIGHT_TOKEN = "sSXwCsxn6h6KDlhv4e9iBw";
+	private const string CLARIFAI_TOKEN = "";
+	private const string CLARIFAI_CLIENT_ID = "j7yHzbxOlue-Q4NkEXTIl1UHllT3_UerH8TLn2Cu";
+	private const string CLARIFAI_CLIENT_SECRET = "dbNK8HdXVqGl4NbN-8U0v-KAJbPh40idRSvCd8vI";
+
+	private static HttpRequest httpRequestInstance = null;
+
+	private bool cloudsightRequestInProgress = false;
+	private Coroutine[] coroutines = new Coroutine[2]; 
+
+	private Text txtClarifai = null;
+	private Text txtCloud = null;
+
+	private HttpRequest(){
 	}
 
+	public static HttpRequest getInstance(){
+		if (httpRequestInstance == null) {
+			GameObject singleton = new GameObject ();
+			httpRequestInstance = singleton.AddComponent<HttpRequest> ();
+			httpRequestInstance.setUpTextObjects ();
+		}
+
+		return httpRequestInstance;
+	}
+
+	public void setUpTextObjects(){
+
+		// get the text objects for output of http POST responses
+		//GameObject textWatson = GameObject.Find ("Watson");
+		//Text txtWatson = textWatson.GetComponent<Text> ();
+		GameObject textClarifai = StartGame.findInactive ("ClarifaiOutput");
+		txtClarifai = textClarifai.GetComponent<Text> ();
+		GameObject textCloud = StartGame.findInactive ("CloudSightOutput");
+		txtCloud = textCloud.GetComponent<Text> ();
+
+	}
+
+	public void makeRequest(byte[] imageData){
+		coroutines[0] = StartCoroutine(postClarifai(imageData));
+
+		if (cloudsightRequestInProgress == false) {
+			coroutines[1] = StartCoroutine(postCloudSight(imageData));
+			cloudsightRequestInProgress = true;
+		}
+	}
 	/*
      * Build the html post body for a post without any image data.
      */
-	public static byte[] htmlPostBody(Dictionary<string, string> paramaters)
+	private byte[] htmlPostBody(Dictionary<string, string> paramaters)
 	{
 		StringBuilder sb = new StringBuilder();
 
@@ -69,7 +108,7 @@ public class HttpRequest : MonoBehaviour {
 	/*
      * Build a html post body for a post with text data (0..n) and image data (0..n)
      */
-	public static byte[] htmlPostBody(HttpConfiguration[] configurations)
+	private byte[] htmlPostBody(HttpConfiguration[] configurations)
 	{
 		if(configurations.Length == 0)
 		{
@@ -146,29 +185,14 @@ public class HttpRequest : MonoBehaviour {
 		{
 			byte[] content = configurations[i].getContent();
 
-			Debug.Log("Block copy 1");
-			Debug.Log("Current Index Src: " + currentIndexSrc);
-			Debug.Log("Current Index Dest: " + currentIndexDest);
-			Debug.Log("Count: " + (placeHolderIndexes[i] - currentIndexSrc));
-
 			// before placeholder
 			System.Buffer.BlockCopy(bodyPart, currentIndexSrc, wholeBody, currentIndexDest, placeHolderIndexes[i] - currentIndexSrc);
 			currentIndexDest += placeHolderIndexes[i] - currentIndexSrc;
 			currentIndexSrc = placeHolderIndexes[i] + BODY_CONTENT_PLACEHOLDER.Length;
 
-			Debug.Log("Block copy 2");
-			Debug.Log("Current Index Src: " + currentIndexSrc);
-			Debug.Log("Current Index Dest: " + currentIndexDest);
-			Debug.Log("Count: " + (content.Length));
-
 			// insert content instead of placeholder
 			System.Buffer.BlockCopy(content, 0, wholeBody, currentIndexDest, content.Length);
 			currentIndexDest += content.Length;
-
-			Debug.Log("Block copy 3");
-			Debug.Log("Current Index Src: " + currentIndexSrc);
-			Debug.Log("Current Index Dest: " + currentIndexDest);
-			Debug.Log("Count: " + (bodyPart.Length - currentIndexSrc));
 
 			// insert rest of data if its the last configuration
 			if (i == configurations.Length - 1)
@@ -183,17 +207,17 @@ public class HttpRequest : MonoBehaviour {
 		return wholeBody;
 	}
 
-	public static byte[] stringToBytes(string str)
+	private byte[] stringToBytes(string str)
 	{
 		return System.Text.Encoding.UTF8.GetBytes(str);
 	}
 
-	public static IEnumerator postClarifai(byte[] imageByte, Text text)
+	private IEnumerator postClarifai(byte[] imageByte)
 	{
 
 		Dictionary<string, string> parameters = new Dictionary<string, string>();
-		parameters.Add("client_id", "j7yHzbxOlue-Q4NkEXTIl1UHllT3_UerH8TLn2Cu");
-		parameters.Add("client_secret", "dbNK8HdXVqGl4NbN-8U0v-KAJbPh40idRSvCd8vI");
+		parameters.Add("client_id", CLARIFAI_CLIENT_ID);
+		parameters.Add("client_secret", CLARIFAI_CLIENT_SECRET);
 		parameters.Add("grant_type", "client_credentials");
 
 		WWW www = new WWW("https://api.clarifai.com/v1/token/", htmlPostBody(parameters));
@@ -229,70 +253,26 @@ public class HttpRequest : MonoBehaviour {
 		JSONNode array3 = array2 ["tag"].AsObject;
 		JSONArray array4 = array3["classes"].AsArray;
 
-		Text[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
-		AcceptedTags[] acceptedTags = ObjectList.getInstance ().getAcceptedTags ();
-		bool foundCurrentObjects = false;
-
-		for (int i = 0; i < currentObjects.Length; i++) {
-			string currentObj = currentObjects [i].text;
-			for (int j = 0; j < acceptedTags.Length; j++) {
-				string acceptedTag = acceptedTags [j].getAcceptedTag();
-				string[] similarTags = acceptedTags [j].getSimilarTags ();
-
-				if (acceptedTag.CompareTo (currentObj) == 0) {
-
-					for(int k = 0; k < similarTags.Length; k++){
-						string similarTag = similarTags [k];
-
-						for (int l = 0; l < array4.Count; l++) {
-							string tagAnalyzed = array4 [l].Value;
-
-							if (tagAnalyzed.CompareTo (similarTag) == 0) {
-								foundCurrentObjects = true;
-
-								l = array4.Count;
-								k = similarTags.Length;
-								j = acceptedTags.Length;
-								i = currentObjects.Length;
-							}
-						}
-					}
-				}
-			}
-		}
-
 		string s = "";
 		for (int i = 0; i < array4.Count; i++) {
 			s += array4 [i].Value + "|";
 		}
-			
-		text.text = s;
 
-		if (foundCurrentObjects) {
-			ObjectList.getInstance ().pickCurrentObjects ();
-			GameObject pCamera = GameObject.Find ("pCamera");
-			GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
-			Debug.Log (pMain);
-			Debug.Log (pCamera);
+		txtClarifai.text = s;
 
-			Webcam.getInstance().stopCamera ();
-			pCamera.SetActive (false);
+		string response = array4.ToString ();
+		response = response.Replace ("\"", "");
+		response = response.Replace ("[", "");
+		response = response.Replace ("]", "");
+		response = response.Replace (" ", "");
 
-			GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1));
-			if (nextNarrative != null) {
-				nextNarrative.SetActive (true);
+		char[] spaceSplitter = { ',' };
+		string[] responses = response.Split (spaceSplitter);
 
-				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
-				PlayerData.getInstance ().saveData ();
-			} else {
-				pMain.SetActive (true);
-			}
-		}
-
-		Debug.Log(www.text);
+		checkIfFoundObjects (responses);
 	}
 
-	public static IEnumerator postCloudSight(byte[] imageByte, Text text)
+	private IEnumerator postCloudSight(byte[] imageByte)
 	{
 		byte[] image = imageByte;// System.IO.File.ReadAllBytes(pathToImage);
 
@@ -304,7 +284,7 @@ public class HttpRequest : MonoBehaviour {
 		Debug.Log(entireData.Length);
 
 		Dictionary<string, string> headers = new Dictionary<string, string>();
-		headers.Add("Authorization", "CloudSight sSXwCsxn6h6KDlhv4e9iBw");
+		headers.Add("Authorization", "CloudSight "+CLOUDSIGHT_TOKEN);
 		headers.Add("Content-Length", "" + (entireData.Length));
 		headers.Add("Content-Type","multipart/form-data; boundary=" + BODY_BOUNDARY);
 
@@ -320,11 +300,10 @@ public class HttpRequest : MonoBehaviour {
 		string response = "";
 		while(status.Equals("not completed"))
 		{
-			Debug.Log("hello");
 			status = "";
 
 			headers = new Dictionary<string, string>();
-			headers.Add("Authorization", "CloudSight sSXwCsxn6h6KDlhv4e9iBw");
+			headers.Add("Authorization", "CloudSight "+CLOUDSIGHT_TOKEN);
 
 			www = new WWW("http://api.cloudsightapi.com/image_responses/" + token, null, headers);
 			yield return www;
@@ -334,9 +313,9 @@ public class HttpRequest : MonoBehaviour {
 
 			status = JSON.Parse(www.text)["status"].Value;
 			response = JSON.Parse(www.text)["name"].Value;
-			text.text = response;
+			txtCloud.text = response;
 
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(5);
 		}
 
 		Debug.Log(response);
@@ -344,9 +323,17 @@ public class HttpRequest : MonoBehaviour {
 		char[] spaceSplitter = { ' ' };
 		response = response.Replace ("'s", "");
 		string[] responses = response.Split (spaceSplitter);
+
+		checkIfFoundObjects (responses);
+
+		cloudsightRequestInProgress = false;
+	}
+
+	public void checkIfFoundObjects(string[] responses){
 		Text[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
 		AcceptedTags[] acceptedTags = ObjectList.getInstance ().getAcceptedTags ();
 		bool foundCurrentObjects = false;
+
 
 		for (int i = 0; i < currentObjects.Length; i++) {
 			string currentObj = currentObjects [i].text;
@@ -377,6 +364,7 @@ public class HttpRequest : MonoBehaviour {
 		}
 
 		if (foundCurrentObjects) {
+
 			ObjectList.getInstance ().pickCurrentObjects ();
 			GameObject pCamera = GameObject.Find ("pCamera");
 			GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
@@ -396,13 +384,11 @@ public class HttpRequest : MonoBehaviour {
 				pMain.SetActive (true);
 			}
 		}
-
-
 	}
 
-	public static IEnumerator postWatson(byte[] imageByte, Text text)
+	private IEnumerator postWatson(byte[] imageByte, Text text)
 	{
-		WWWForm form = new WWWForm();
+		//WWWForm form = new WWWForm();
 		WWW www = new WWW("https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=68afcccf311899e6f6cc6064de624901456c180a&version=2016-05-20", imageByte);// form);
 
 		yield return www;
@@ -420,7 +406,7 @@ public class HttpRequest : MonoBehaviour {
 		Debug.Log(www.text);
 	}
 
-	public static void checkWWWForError(WWW www)
+	private void checkWWWForError(WWW www)
 	{
 		if (www.error == null)
 		{
@@ -430,17 +416,5 @@ public class HttpRequest : MonoBehaviour {
 		{
 			Debug.Log("WWW Error: " + www.error);
 		}
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
-
-	public WWW GET(string url)
-	{
-		WWW www = new WWW(url);
-		//StartCoroutine(WaitForRequest(www));
-		return www;
 	}
 }
