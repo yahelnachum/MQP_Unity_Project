@@ -2204,17 +2204,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 717063635}
-        m_MethodName: changePanel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: pAnalyzeButtonTutorial:deactivate,pCameraStreamTutorial:deactivate
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &717063637
@@ -2271,13 +2260,14 @@ GameObject:
   - 224: {fileID: 717387529}
   - 222: {fileID: 717387531}
   - 114: {fileID: 717387530}
+  - 114: {fileID: 717387532}
   m_Layer: 5
   m_Name: pSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &717387529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2332,6 +2322,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717387528}
+--- !u!114 &717387532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 717387528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc3f6761c9f2436697789cef7756c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &721956671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,7 +2343,6 @@ GameObject:
   - 224: {fileID: 721956672}
   - 222: {fileID: 721956675}
   - 114: {fileID: 721956674}
-  - 114: {fileID: 721956673}
   m_Layer: 5
   m_Name: pObjectList
   m_TagString: Untagged
@@ -2371,20 +2371,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &721956673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 721956671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadd5e5d7eaa242cfb3583e741713e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectListTextAsset: {fileID: 4900000, guid: 80e4d3828ac4848839c5cf54bf9eb1b5, type: 3}
-  acceptedTagsTextAsset: {fileID: 4900000, guid: ceac01839a59d4ba49a36bcfc7fd1c1c,
-    type: 3}
 --- !u!114 &721956674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5100,17 +5086,6 @@ MonoBehaviour:
           m_StringArgument: pCamera,pMain
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1812252869}
-        m_MethodName: changePanel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: pCameraStreamTutorial:deactivate,pAnalyzeButtonTutorial:deactivate,pCameraButtonTutorial:activate
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1812252872
@@ -5460,17 +5435,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1969635269}
-        m_MethodName: changePanel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: pCameraButtonTutorial:deactivate,pCameraStreamTutorial:activate
           m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

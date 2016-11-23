@@ -14,7 +14,7 @@ owl,owls
 peacock,peacocks
 rooster,roosters
 apple,apples
-grapes,grape
+grapes,grape,vine,grapevine
 pear,pears
 empty chair,chair,chairs
 table,tables

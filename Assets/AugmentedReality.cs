@@ -17,7 +17,7 @@ public class AugmentedReality : MonoBehaviour {
 			GameObject singleton = new GameObject ();
 			augmentedRealityInstance = singleton.AddComponent<AugmentedReality> ();
 
-			augmentedRealityInstance.pARImage = StartGame.findInactive ("pARImage", "vMenu");
+			augmentedRealityInstance.pARImage = (GameObject)StartGame.findInactive ("pARImage", "vMenu")[0];
 
 			int cwCamera = Webcam.getInstance ().cwCamera;
 			augmentedRealityInstance.pARImage.transform.localRotation = Quaternion.AngleAxis (-cwCamera * 1f, Vector3.back);

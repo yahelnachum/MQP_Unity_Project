@@ -55,7 +55,7 @@ public class HttpRequest : MonoBehaviour {
 		if (httpRequestInstance == null) {
 			GameObject singleton = new GameObject ();
 			httpRequestInstance = singleton.AddComponent<HttpRequest> ();
-			httpRequestInstance.setUpTextObjects ();
+			//httpRequestInstance.setUpTextObjects ();
 		}
 
 		return httpRequestInstance;
@@ -66,10 +66,10 @@ public class HttpRequest : MonoBehaviour {
 		// get the text objects for output of http POST responses
 		//GameObject textWatson = GameObject.Find ("Watson");
 		//Text txtWatson = textWatson.GetComponent<Text> ();
-		GameObject textClarifai = StartGame.findInactive ("ClarifaiOutput", "vMenu");
-		txtClarifai = textClarifai.GetComponent<Text> ();
-		GameObject textCloud = StartGame.findInactive ("CloudSightOutput", "vMenu");
-		txtCloud = textCloud.GetComponent<Text> ();
+		//GameObject textClarifai = StartGame.findInactive ("ClarifaiOutput", "vMenu");
+		//txtClarifai = textClarifai.GetComponent<Text> ();
+		//GameObject textCloud = StartGame.findInactive ("CloudSightOutput", "vMenu");
+		//txtCloud = textCloud.GetComponent<Text> ();
 
 	}
 
@@ -258,7 +258,8 @@ public class HttpRequest : MonoBehaviour {
 			s += array4 [i].Value + "|";
 		}
 
-		txtClarifai.text = s;
+		//txtClarifai.text = s;
+		Debug.Log("Clarifai Response: "+s);
 
 		string response = array4.ToString ();
 		response = response.Replace ("\"", "");
@@ -313,7 +314,8 @@ public class HttpRequest : MonoBehaviour {
 
 			status = JSON.Parse(www.text)["status"].Value;
 			response = JSON.Parse(www.text)["name"].Value;
-			txtCloud.text = response;
+			//txtCloud.text = response;
+			Debug.Log("CloudSight Response: "+response);
 
 			yield return new WaitForSeconds(5);
 		}
@@ -330,13 +332,13 @@ public class HttpRequest : MonoBehaviour {
 	}
 
 	public void checkIfFoundObjects(string[] responses){
-		Text[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
+		List<Text>[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
 		AcceptedTags[] acceptedTags = ObjectList.getInstance ().getAcceptedTags ();
 		bool foundCurrentObjects = false;
 
 
 		for (int i = 0; i < currentObjects.Length; i++) {
-			string currentObj = currentObjects [i].text;
+			string currentObj = currentObjects [i][0].text;
 			for (int j = 0; j < acceptedTags.Length; j++) {
 				string acceptedTag = acceptedTags [j].getAcceptedTag();
 				string[] similarTags = acceptedTags [j].getSimilarTags ();

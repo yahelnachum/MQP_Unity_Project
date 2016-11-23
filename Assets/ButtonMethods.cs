@@ -12,8 +12,8 @@ public class ButtonMethods : MonoBehaviour {
 
 		string[] panelsSplit = panels.Split(splits);
 
-		GameObject oldPanelObj = StartGame.findInactive (panelsSplit[0],"vMenu");
-		GameObject newPanelObj = StartGame.findInactive (panelsSplit[1],"vMenu");
+		GameObject oldPanelObj = (GameObject)StartGame.findInactive (panelsSplit[0],"vMenu")[0];
+		GameObject newPanelObj = (GameObject)StartGame.findInactive (panelsSplit[1],"vMenu")[0];
 
 		oldPanelObj.SetActive (false);
 		newPanelObj.SetActive (true);
@@ -42,7 +42,7 @@ public class ButtonMethods : MonoBehaviour {
 
 		pAugmentedReality.SetActive (false);
 
-		GameObject nextNarrative = StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1),"vMenu");
+		GameObject nextNarrative = (GameObject)StartGame.findInactive("pNarrative"+(PlayerData.getInstance ().getCurrentNarrativeChunk()+1),"vMenu")[0];
 		if (nextNarrative != null) {
 			nextNarrative.SetActive (true);
 

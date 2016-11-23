@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.IO; 
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class ObjectList{
 
 	private string[] objects;
 	private AcceptedTags[] acceptedTags;
-	private Text[] currentObjects = new Text[3];
+	private List<Text>[] currentObjects = new List<Text>[3];
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="ObjectList"/> class.
@@ -38,8 +39,12 @@ public class ObjectList{
 
 		// get text objects from game
 		for (int i = 0; i < currentObjects.Length; i++) {
-			GameObject text = GameObject.Find ("tObject" + i);
-			currentObjects[i] = text.GetComponent<Text> ();
+			List<GameObject> text = StartGame.findInactive ("tObject" + i, "vMenu");
+			List<Text> texts = new List<Text> ();
+			for(int j = 0; j < text.Count; j++){
+				texts.Add (text [j].GetComponent<Text> ());
+			}
+			currentObjects[i] = texts;
 		}
 
 		pickCurrentObjects ();
@@ -68,8 +73,11 @@ public class ObjectList{
 			while(index == -1 || inArray(usedIndexs, index, i)){
 				index = Random.Range (0, objects.Length);
 			}
-
-			currentObjects [i].text = objects [index];
+				
+			Debug.Log("object "+objects[index]);
+			for (int j = 0; j < currentObjects [i].Count; j++) {
+				currentObjects [i][j].text = objects [index];
+			}
 			usedIndexs [i] = index;
 		}
 	}
@@ -95,7 +103,7 @@ public class ObjectList{
 	/// Returs the current Text objects so that you can check the current list of objects the player is tasked to find.
 	/// </summary>
 	/// <returns>The current text objects the player is searching for.</returns>
-	public Text[] getCurrentObjects(){
+	public List<Text>[] getCurrentObjects(){
 		return currentObjects;
 	}
 

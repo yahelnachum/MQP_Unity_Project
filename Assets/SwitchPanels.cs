@@ -22,7 +22,7 @@ public class SwitchPanels : MonoBehaviour {
 			for (int i = 0; i < panels.Length; i++) {
 				string[] panelInstruction = panels [i].Split (instructionsSplits);
 				Debug.Log ("tutorial obj name: " + panelInstruction [0]);
-				GameObject panel = StartGame.findInactive (panelInstruction [0], "vMenu");
+				GameObject panel = (GameObject) StartGame.findInactive (panelInstruction [0], "vMenu")[0];
 
 				if (panelInstruction [1].CompareTo (ACTIVATE) == 0) {
 					Debug.Log ("activate");
