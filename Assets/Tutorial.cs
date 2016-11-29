@@ -3,31 +3,19 @@ using System.Collections;
 
 public class Tutorial : MonoBehaviour {
 
-	const string ACTIVATE = "activate";
-	const string DE_ACTIVATE = "deactivate";
 
-	public void changePanel(string str){
+	private float gopherIntroductionWaitTime = 1f; // in seconds
 
-		if (PlayerData.getInstance ().getCurrentNarrativeChunk() == 0) {
+	void Start(){
+		StartCoroutine (StartTutorialTimer ());
+	}
 
-			char[] panelSplits = { ',' };
-			char[] instructionsSplits = { ':' };
-
-			string[] panels = str.Split (panelSplits);
-
-			for (int i = 0; i < panels.Length; i++) {
-				string[] panelInstruction = panels [i].Split (instructionsSplits);
-				Debug.Log ("tutorial obj name: " + panelInstruction [0]);
-				GameObject panel = (GameObject) StartGame.findInactive (panelInstruction [0], "vTutorial")[0];
-
-				if (panelInstruction [1].CompareTo (ACTIVATE) == 0) {
-					Debug.Log ("activate");
-					panel.SetActive (true);
-				} else {
-					Debug.Log ("deactivate");
-					panel.SetActive (false);
-				}
-			}
+	IEnumerator StartTutorialTimer(){
+		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 0) {
+			Debug.Log ("Loading tutorial");
+			yield return new WaitForSeconds (gopherIntroductionWaitTime);
+			Debug.Log ("Activating tutorial");
+			SwitchPanels.changePanelStatic ("pMainTutorialObjectList:activate");
 		}
 	}
 }
