@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class AugmentedReality : MonoBehaviour {
@@ -39,12 +40,39 @@ public class AugmentedReality : MonoBehaviour {
 
 	public void setNewImage(){
 
-		byte[] imageData = System.IO.File.ReadAllBytes (Application.persistentDataPath + "/image" + PlayerData.getInstance ().getCurrentNarrativeChunk () + ".jpg");
-
-
+		byte[] imageData = System.IO.File.ReadAllBytes (Application.persistentDataPath + 
+														"/image" + PlayerData.getInstance ().getCurrentNarrativeChunk () + ".jpg");
 		Texture2D tex = new Texture2D (1, 1);
 		tex.LoadImage (imageData);
 		img.texture = tex;
 
+		startTimer ();
+	}
+
+	public void startTimer(){
+		StartCoroutine (WaitForPanelSwitch ());
+	}
+
+	private float minWaitTime = 1f; // in seconds
+	private float maxWaitTime = 2f; // in seconds
+	private float firstWaitTime = 1f; // in seconds
+	private bool firstTime = true;
+
+	IEnumerator WaitForPanelSwitch(){
+		if (firstTime) {
+			firstTime = false;
+			yield return new WaitForSeconds (firstWaitTime);
+			List<GameObject> panel = StartGame.findInactive ("pError", "pAugmentedReality");
+			panel [0].SetActive (true);
+
+		} else {
+			yield return new WaitForSeconds (minWaitTime);
+			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pMain:activate");
+		}
+		//Debug.Log ("splash screen \"loaded\"");
+		//SwitchPanels.changePanelStatic ("pSplash:deactivate,pMain:activate");
+
+		PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
+		PlayerData.getInstance ().saveData ();
 	}
 }

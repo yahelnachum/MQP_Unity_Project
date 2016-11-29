@@ -19,6 +19,6 @@ public class SplashScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Input.gyro.attitude);
+		//Debug.Log (Input.gyro.attitude);
 	}
 }

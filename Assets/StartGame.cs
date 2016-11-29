@@ -8,7 +8,6 @@ public class StartGame : MonoBehaviour {
 	void Start () {
 	
 		PlayerData data = PlayerData.getInstance ();
-
 		data.loadData ();
 	}
 

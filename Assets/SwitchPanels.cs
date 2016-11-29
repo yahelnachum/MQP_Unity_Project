@@ -12,25 +12,22 @@ public class SwitchPanels : MonoBehaviour {
 
 	public static void changePanelStatic(string str){
 
-		if (PlayerData.getInstance ().getCurrentNarrativeChunk() == 0) {
+		char[] panelSplits = { ',' };
+		char[] instructionsSplits = { ':' };
 
-			char[] panelSplits = { ',' };
-			char[] instructionsSplits = { ':' };
+		string[] panels = str.Split (panelSplits);
 
-			string[] panels = str.Split (panelSplits);
+		for (int i = 0; i < panels.Length; i++) {
+			string[] panelInstruction = panels [i].Split (instructionsSplits);
+			Debug.Log ("tutorial obj name: " + panelInstruction [0]);
+			GameObject panel = (GameObject) StartGame.findInactive (panelInstruction [0], "vMenu")[0];
 
-			for (int i = 0; i < panels.Length; i++) {
-				string[] panelInstruction = panels [i].Split (instructionsSplits);
-				Debug.Log ("tutorial obj name: " + panelInstruction [0]);
-				GameObject panel = (GameObject) StartGame.findInactive (panelInstruction [0], "vMenu")[0];
-
-				if (panelInstruction [1].CompareTo (ACTIVATE) == 0) {
-					Debug.Log ("activate");
-					panel.SetActive (true);
-				} else {
-					Debug.Log ("deactivate");
-					panel.SetActive (false);
-				}
+			if (panelInstruction [1].CompareTo (ACTIVATE) == 0) {
+				Debug.Log ("activate");
+				panel.SetActive (true);
+			} else {
+				Debug.Log ("deactivate");
+				panel.SetActive (false);
 			}
 		}
 	}

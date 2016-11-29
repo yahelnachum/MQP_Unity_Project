@@ -178,9 +178,6 @@ public class Webcam : MonoBehaviour{
 		snap.SetPixels(array);
         snap.Apply();
 
-		Debug.Log (Application.persistentDataPath);
-		System.IO.File.WriteAllBytes(Application.persistentDataPath+"/image"+PlayerData.getInstance().getCurrentNarrativeChunk()+".jpg", snap.EncodeToJPG());
-
 		HttpRequest.getInstance ().makeRequest (snap.EncodeToJPG ());
     }
 }

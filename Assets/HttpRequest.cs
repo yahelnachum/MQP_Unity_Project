@@ -270,7 +270,7 @@ public class HttpRequest : MonoBehaviour {
 		char[] spaceSplitter = { ',' };
 		string[] responses = response.Split (spaceSplitter);
 
-		checkIfFoundObjects (responses);
+		checkIfFoundObjects (responses, imageByte);
 	}
 
 	private IEnumerator postCloudSight(byte[] imageByte)
@@ -326,12 +326,12 @@ public class HttpRequest : MonoBehaviour {
 		response = response.Replace ("'s", "");
 		string[] responses = response.Split (spaceSplitter);
 
-		checkIfFoundObjects (responses);
+		checkIfFoundObjects (responses, imageByte);
 
 		cloudsightRequestInProgress = false;
 	}
 
-	public void checkIfFoundObjects(string[] responses){
+	public void checkIfFoundObjects(string[] responses, byte[] imageByte){
 		List<Text>[] currentObjects = ObjectList.getInstance ().getCurrentObjects ();
 		AcceptedTags[] acceptedTags = ObjectList.getInstance ().getAcceptedTags ();
 		bool foundCurrentObjects = false;
@@ -366,6 +366,10 @@ public class HttpRequest : MonoBehaviour {
 		}
 
 		if (foundCurrentObjects) {
+
+			Debug.Log (Application.persistentDataPath);
+			System.IO.File.WriteAllBytes (Application.persistentDataPath + 
+	  										"/image" + PlayerData.getInstance ().getCurrentNarrativeChunk () + ".jpg", imageByte);
 
 			ObjectList.getInstance ().pickCurrentObjects ();
 			GameObject pCamera = GameObject.Find ("pCamera");
