@@ -7,7 +7,7 @@ public class SplashScreen : MonoBehaviour {
 	private float gopherIntroductionWaitTime = 1f; // in seconds
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (SwitchToMainMenu ());
+		
 	}
 
 	IEnumerator SwitchToMainMenu(){
@@ -15,17 +15,16 @@ public class SplashScreen : MonoBehaviour {
 		yield return new WaitForSeconds (splashScreenWaitTime);
 		Debug.Log ("splash screen \"loaded\"");
 		SwitchPanels.changePanelStatic ("pSplash:deactivate,pMain:activate");
-
-		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 0) {
-			Debug.Log ("Loading tutorial");
-			yield return new WaitForSeconds (gopherIntroductionWaitTime);
-			Debug.Log ("Activating tutorial");
-			SwitchPanels.changePanelStatic ("pMainTutorialObjectList:activate");
-		}
 	}
-	
+
+	bool first = true;
 	// Update is called once per frame
 	void Update () {
+
+		if (first && !Application.isShowingSplashScreen) {
+			first = false;
+			StartCoroutine (SwitchToMainMenu ());
+		}
 		//Debug.Log (Input.gyro.attitude);
 	}
 }
