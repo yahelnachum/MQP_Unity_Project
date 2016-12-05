@@ -18,6 +18,7 @@ public class SwitchPanels : MonoBehaviour {
 		string[] panels = str.Split (panelSplits);
 
 		for (int i = 0; i < panels.Length; i++) {
+
 			string[] panelInstruction = panels [i].Split (instructionsSplits);
 			Debug.Log ("tutorial obj name: " + panelInstruction [0]);
 			GameObject panel = (GameObject) StartGame.findInactive (panelInstruction [0], "vMenu")[0];
