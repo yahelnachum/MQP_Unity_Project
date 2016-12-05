@@ -373,14 +373,23 @@ public class HttpRequest : MonoBehaviour {
 
 			ObjectList.getInstance ().pickCurrentObjects ();
 			GameObject pCamera = GameObject.Find ("pCamera");
-			GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
-
 			Webcam.getInstance().stopCamera ();
 
 			pCamera.SetActive (false);
-			pAugmentedReality.SetActive (true);
 
-			AugmentedReality.getInstance ().setNewImage ();
+			// go to augmented reality panel for chunks 3,5,6,7,8,9
+			if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 3 ||
+			    PlayerData.getInstance ().getCurrentNarrativeChunk () > 4) {
+
+				GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
+				pAugmentedReality.SetActive (true);
+				AugmentedReality.getInstance ().setNewImage ();
+			} else {
+				GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
+				pMain.SetActive (true);
+				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
+				PlayerData.getInstance ().saveData ();
+			}
 		}
 	}
 

@@ -23,6 +23,7 @@ public class PlayerData {
 
 	public void incrementCurrentNarrativeChunk(){
 		currentNarrativeChunk++;
+		Debug.Log ("Incrementing the current narrative chunk to chunk " + currentNarrativeChunk);
 	}
 
 	public string getFilePath(){
@@ -44,6 +45,7 @@ public class PlayerData {
 	}
 
 	public void saveData(){
+		Debug.Log ("Saving Player Data");
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Open (Application.persistentDataPath + "/" + fileName, FileMode.OpenOrCreate);
 		bf.Serialize (file, currentNarrativeChunk);
