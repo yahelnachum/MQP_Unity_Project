@@ -8,6 +8,7 @@ public class ObjectListPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("Initializing List from panel start");
 		ObjectList instance = ObjectList.getInstance ();
 		instance.initialize (objectListTextAsset, acceptedTagsTextAsset);
 	}

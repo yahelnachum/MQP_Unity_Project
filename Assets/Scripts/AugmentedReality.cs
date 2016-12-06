@@ -65,14 +65,12 @@ public class AugmentedReality : MonoBehaviour {
 			List<GameObject> panel = StartGame.findInactive ("pError", "pAugmentedReality");
 			panel [0].SetActive (true);
 
+			PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
+			PlayerData.getInstance ().saveData ();
+
 		} else {
 			yield return new WaitForSeconds (minWaitTime);
-			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pMain:activate");
+			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pRewards:activate");
 		}
-		//Debug.Log ("splash screen \"loaded\"");
-		//SwitchPanels.changePanelStatic ("pSplash:deactivate,pMain:activate");
-
-		PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
-		PlayerData.getInstance ().saveData ();
 	}
 }

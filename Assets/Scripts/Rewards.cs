@@ -36,12 +36,15 @@ public class Rewards : MonoBehaviour {
     {
         switch (PlayerData.getInstance().getCurrentNarrativeChunk())
         {
-            case 0:
-            case 1:
-            case 2:
-            case 4:
-            case 5:
-            case 7:
+			case 0:
+			case 1:
+			case 2:
+			case 4:
+			case 5:
+			case 7:
+				Debug.Log ("Processing Next bit");
+				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
+				PlayerData.getInstance ().saveData ();
                 SwitchPanels.changePanelStatic("pMain:activate,pRewards:deactivate");
                 break;
             case 6:

@@ -385,10 +385,8 @@ public class HttpRequest : MonoBehaviour {
 				pAugmentedReality.SetActive (true);
 				AugmentedReality.getInstance ().setNewImage ();
 			} else {
-				GameObject pMain = pCamera.transform.parent.FindChild ("pMain").gameObject;
-				pMain.SetActive (true);
-				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
-				PlayerData.getInstance ().saveData ();
+				GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
+				pRewards.SetActive (true);
 			}
 		}
 	}
