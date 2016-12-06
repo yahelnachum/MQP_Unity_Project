@@ -4,7 +4,8 @@ using System.Collections;
 
 public class Rewards : MonoBehaviour {
 
-    /// <summary>
+
+	/// <summary>
     /// Function used to set all values on the rewards page. I'm not quite sure
     /// where I should be getting these values from, so I'm sort of making them
     /// up right now. Also not sure how to get this function called.

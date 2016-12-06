@@ -387,6 +387,10 @@ public class HttpRequest : MonoBehaviour {
 			} else {
 				GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
 				pRewards.SetActive (true);
+
+				GameObject confetti = StartGame.findInactive ("confetti", "vMenu")[0];
+				Animation anim = confetti.GetComponent<Animation> ();
+				anim.Play ();
 			}
 		}
 	}
