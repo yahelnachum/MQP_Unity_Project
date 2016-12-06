@@ -1258,7 +1258,7 @@ GameObject:
   - 222: {fileID: 251902737}
   - 114: {fileID: 251902736}
   m_Layer: 5
-  m_Name: tRank (1)
+  m_Name: tTotal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1278,7 +1278,7 @@ RectTransform:
   m_Father: {fileID: 761832382}
   m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.35, y: 0.15}
+  m_AnchorMax: {x: 0.4, y: 0.15}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2557,7 +2557,7 @@ GameObject:
   - 222: {fileID: 595439400}
   - 114: {fileID: 595439399}
   m_Layer: 5
-  m_Name: tRank
+  m_Name: tRank_rew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3862,7 +3862,7 @@ GameObject:
   - 222: {fileID: 877397620}
   - 114: {fileID: 877397619}
   m_Layer: 5
-  m_Name: tRank (3)
+  m_Name: tHad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3882,7 +3882,7 @@ RectTransform:
   m_Father: {fileID: 761832382}
   m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0.3}
-  m_AnchorMax: {x: 0.35, y: 0.45}
+  m_AnchorMax: {x: 0.4, y: 0.45}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4433,7 +4433,7 @@ GameObject:
   - 222: {fileID: 958014227}
   - 114: {fileID: 958014226}
   m_Layer: 5
-  m_Name: tTotalCoins
+  m_Name: tTotalCoins_rew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4452,8 +4452,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 761832382}
   m_RootOrder: 5
-  m_AnchorMin: {x: 0.3, y: 0}
-  m_AnchorMax: {x: 0.9, y: 0.15}
+  m_AnchorMin: {x: 0.4, y: 0}
+  m_AnchorMax: {x: 1, y: 0.15}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5327,7 +5327,7 @@ GameObject:
   - 222: {fileID: 1116131054}
   - 114: {fileID: 1116131053}
   m_Layer: 5
-  m_Name: tCoins
+  m_Name: tCoins_rew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5346,8 +5346,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 761832382}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0.3, y: 0.3}
-  m_AnchorMax: {x: 0.9, y: 0.45}
+  m_AnchorMin: {x: 0.4, y: 0.3}
+  m_AnchorMax: {x: 1, y: 0.45}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7532,7 +7532,7 @@ GameObject:
   - 222: {fileID: 1570543915}
   - 114: {fileID: 1570543914}
   m_Layer: 5
-  m_Name: tNewRank
+  m_Name: tNewRank_rew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8612,7 +8612,7 @@ GameObject:
   - 222: {fileID: 1840371151}
   - 114: {fileID: 1840371150}
   m_Layer: 5
-  m_Name: tGetCoins
+  m_Name: tGetCoins_rew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8631,8 +8631,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 761832382}
   m_RootOrder: 4
-  m_AnchorMin: {x: 0.2, y: 0.15}
-  m_AnchorMax: {x: 0.9, y: 0.3}
+  m_AnchorMin: {x: 0.4, y: 0.15}
+  m_AnchorMax: {x: 1, y: 0.3}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9643,7 +9643,7 @@ GameObject:
   - 222: {fileID: 2037988513}
   - 114: {fileID: 2037988512}
   m_Layer: 5
-  m_Name: tRank (2)
+  m_Name: tEarned
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9663,7 +9663,7 @@ RectTransform:
   m_Father: {fileID: 761832382}
   m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0.15}
-  m_AnchorMax: {x: 0.35, y: 0.3}
+  m_AnchorMax: {x: 0.4, y: 0.3}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
