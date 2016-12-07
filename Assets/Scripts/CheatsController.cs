@@ -22,11 +22,9 @@ public class CheatsController : MonoBehaviour {
 		}
 	}
 
+	//switch panels to update
 	public void goUpdate(){
 		SwitchPanels.changePanelStatic ("pUpdate:activate,pCheats:deactivate");
-
-
-
-	
 	}
+
 }

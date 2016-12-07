@@ -16,7 +16,6 @@ public class ObjectList{
 	private int counter;
 	private int subCount;
 
-
 	/// <summary>
 	/// Initializes a new instance of the <see cref="ObjectList"/> class.
 	/// Made private so that it can be a singleton.
