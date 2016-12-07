@@ -12,11 +12,9 @@ public class ObjectList{
 	private string[] objects;
 	private AcceptedTags[] acceptedTags;
 	private List<Text>[] currentObjects = new List<Text>[3];
-
 	private int[] usedIndexs;
-
-	static private int counter;
-
+	private int counter;
+	private int subCount;
 
 
 	/// <summary>
@@ -39,8 +37,8 @@ public class ObjectList{
 	/// <param name="asset">Asset.</param>
 	public void initialize(TextAsset objectListTextAsset, TextAsset acceptedTagsTextAsset){
 
-
 		counter = 0;
+		subCount = 0;
 
 		// get array of available objects
 		char[] lineSplitters = { '\n', '\r' };
@@ -48,10 +46,9 @@ public class ObjectList{
 
 		usedIndexs = new int[objects.Length];
 
-		//initialize to -1
+		//initialize to 0, reperesenting nothing has been used yet
 		foreach (int i in usedIndexs)
 		{
-			//System.Console.WriteLine(i);
 			usedIndexs[i] = 0;
 		}
 
@@ -81,26 +78,40 @@ public class ObjectList{
 	/// <summary>
 	/// Picks a new set of 3 objects to give to the player and displays them in the main menu panel.
 	/// </summary>
+	/// 
+	/// Todo: get it so that the list resets immediately if exhausted
 	public void pickCurrentObjects(){
-
+		
 		for (int i = 0; i < currentObjects.Length; i++) {
 
-			if (counter == usedIndexs.Length) {
-				Debug.Log("object list exhausted");
-				for (int j = 0; j < currentObjects [i].Count; j++) {
-					currentObjects [i][j].text = "no more unique objects";
-				}
+			if (subCount == 5) {
+				Debug.Log ("reseting list");
 
-				continue;
+				subCount = 0;
+				counter = 0;
+				for (int k = 0; k < usedIndexs.Length; k++) {
+					usedIndexs [k] = 0;
+				}
 			}
-			
+
+			if (counter == usedIndexs.Length) {
+ 				//if we've exhausted the entire list, indicate as such
+					Debug.Log ("object list exhausted");
+					for (int j = 0; j < currentObjects [i].Count; j++) {
+						currentObjects [i] [j].text = "no more unique objects";
+					}
+					subCount++;
+					continue;
+
+			}
+
+			//get first random value
 			int index = Random.Range (0, objects.Length);
 
-			// get a unique index
+			//if used before, keep searching for unused word
 			while(usedBefore(usedIndexs, index)){
 				index = Random.Range (0, objects.Length);
 			}
-				
 				
 			Debug.Log("object "+objects[index]);
 			for (int j = 0; j < currentObjects [i].Count; j++) {
@@ -132,12 +143,11 @@ public class ObjectList{
 
 
 	/// <summary>
-	/// Checks if the number was found in the array up to a given index.
+	/// Checks if the randomly chosen index for a word has been used already.
 	/// </summary>
-	/// <returns><c>true</c>, If number was found in array, <c>false</c> otherwise.</returns>
+	/// <returns><c>true</c>, If word was used already, <c>false</c> otherwise.</returns>
 	/// <param name="array">The int array to look through</param>
-	/// <param name="num">The number to make sure that is not already present in the array.</param>
-	/// <param name="maxIndex">The maximum index to look up to in the array (exclusive)</param>
+	/// <param name="num">The Index to check against.</param>
 	public bool usedBefore(int[] array, int num){
 		
 		if (array [num] == 1) {
