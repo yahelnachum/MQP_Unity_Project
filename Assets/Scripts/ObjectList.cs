@@ -13,6 +13,8 @@ public class ObjectList{
 	private AcceptedTags[] acceptedTags;
 	private List<Text>[] currentObjects = new List<Text>[3];
 
+
+
 	/// <summary>
 	/// Initializes a new instance of the <see cref="ObjectList"/> class.
 	/// Made private so that it can be a singleton.
@@ -65,7 +67,15 @@ public class ObjectList{
 	/// </summary>
 	public void pickCurrentObjects(){
 
-		int[] usedIndexs = new int[currentObjects.Length];
+		int[] usedIndexs = new int[objects.Length];
+
+		//initialize to -1
+		foreach (int i in usedIndexs)
+		{
+			//System.Console.WriteLine(i);
+			usedIndexs[i] = -1;
+		}
+
 		for (int i = 0; i < currentObjects.Length; i++) {
 			int index = -1;
 
@@ -73,6 +83,8 @@ public class ObjectList{
 			while(index == -1 || inArray(usedIndexs, index, i)){
 				index = Random.Range (0, objects.Length);
 			}
+
+
 				
 			Debug.Log("object "+objects[index]);
 			for (int j = 0; j < currentObjects [i].Count; j++) {
@@ -82,6 +94,8 @@ public class ObjectList{
 		}
 	}
 
+
+
 	/// <summary>
 	/// Checks if the number was found in the array up to a given index.
 	/// </summary>
@@ -90,6 +104,24 @@ public class ObjectList{
 	/// <param name="num">The number to make sure that is not already present in the array.</param>
 	/// <param name="maxIndex">The maximum index to look up to in the array (exclusive)</param>
 	public bool inArray(int[] array, int num, int maxIndex){
+		for (int i = 0; i < maxIndex; i++) {
+			if (array [i] == num) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
+	/// <summary>
+	/// Checks if the number was found in the array up to a given index.
+	/// </summary>
+	/// <returns><c>true</c>, If number was found in array, <c>false</c> otherwise.</returns>
+	/// <param name="array">The int array to look through</param>
+	/// <param name="num">The number to make sure that is not already present in the array.</param>
+	/// <param name="maxIndex">The maximum index to look up to in the array (exclusive)</param>
+	public bool usedBefore(int[] array, int num, int maxIndex){
 		for (int i = 0; i < maxIndex; i++) {
 			if (array [i] == num) {
 				return true;
