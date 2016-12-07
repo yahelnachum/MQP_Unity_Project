@@ -24,15 +24,31 @@ public class CheatsController : MonoBehaviour {
 
 	public void goUpdate(){
 		SwitchPanels.changePanelStatic ("pUpdate:activate,pCheats:deactivate");
+
+		UpdatePanel.progress (0.1f);
+		Debug.Log("update 1");
+
 		UpdatePanel.progress (0.2f);
+		Debug.Log("update 1");
+
 		UpdatePanel.progress (0.3f);
+		Debug.Log("update 1");
+
 
 		UpdatePanel.progress (0.4f);
+		Debug.Log("update 1");
+
 
 		UpdatePanel.progress (0.5f);
+		Debug.Log("update 1");
+
 		UpdatePanel.progress (0.6f);
+		Debug.Log("update 1");
+
 
 		UpdatePanel.progress (0.7f);
+		Debug.Log("update 7");
+
 
 
 	
