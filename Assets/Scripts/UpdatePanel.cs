@@ -3,6 +3,30 @@ using System.Collections;
 
 public class UpdatePanel : MonoBehaviour {
 
+	private static UpdatePanel instance = new UpdatePanel();
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="UpdatePanel"/> class.
+	/// Made private so that it can be a singleton.
+	/// </summary>
+	private UpdatePanel(){}
+
+	/// <summary>
+	/// Returns the single instance of the UpdatePanel.
+	/// </summary>
+	/// <returns>The single instance of the UpdatePanel class.</returns>
+	public static UpdatePanel getInstance(){
+		if (instance == null) {
+			GameObject singleton = new GameObject ();
+			instance = singleton.AddComponent<UpdatePanel> ();
+		}
+		return instance;
+	}
+
+	public void Start(){
+		UpdatePanel.getInstance();
+	}
+
 
 	/// <summary>
 	/// Increase the progress bar element on the update panel by looping, adjusting anchors, and waiting.
@@ -29,9 +53,9 @@ public class UpdatePanel : MonoBehaviour {
 	}
 
 	//used by button to call progress function
-	public void startUpdate(){
+	public static void startUpdate(){
 
-		StartCoroutine (UpdatePanel.progress (0.1f));
+		UpdatePanel.getInstance().StartCoroutine(progress (0.1f));
 
 	}
 
