@@ -13,6 +13,10 @@ public class ObjectList{
 	private AcceptedTags[] acceptedTags;
 	private List<Text>[] currentObjects = new List<Text>[3];
 
+	private int[] usedIndexs;
+
+	static private int counter;
+
 
 
 	/// <summary>
@@ -35,9 +39,21 @@ public class ObjectList{
 	/// <param name="asset">Asset.</param>
 	public void initialize(TextAsset objectListTextAsset, TextAsset acceptedTagsTextAsset){
 
+
+		counter = 0;
+
 		// get array of available objects
 		char[] lineSplitters = { '\n', '\r' };
 		objects = objectListTextAsset.text.Split (lineSplitters, System.StringSplitOptions.RemoveEmptyEntries);
+
+		usedIndexs = new int[objects.Length];
+
+		//initialize to -1
+		foreach (int i in usedIndexs)
+		{
+			//System.Console.WriteLine(i);
+			usedIndexs[i] = 0;
+		}
 
 		// get text objects from game
 		for (int i = 0; i < currentObjects.Length; i++) {
@@ -67,30 +83,32 @@ public class ObjectList{
 	/// </summary>
 	public void pickCurrentObjects(){
 
-		int[] usedIndexs = new int[objects.Length];
-
-		//initialize to -1
-		foreach (int i in usedIndexs)
-		{
-			//System.Console.WriteLine(i);
-			usedIndexs[i] = -1;
-		}
-
 		for (int i = 0; i < currentObjects.Length; i++) {
-			int index = -1;
+
+			if (counter == usedIndexs.Length) {
+				Debug.Log("object list exhausted");
+				for (int j = 0; j < currentObjects [i].Count; j++) {
+					currentObjects [i][j].text = "no more unique objects";
+				}
+
+				continue;
+			}
+			
+			int index = Random.Range (0, objects.Length);
 
 			// get a unique index
-			while(index == -1 || inArray(usedIndexs, index, i)){
+			while(usedBefore(usedIndexs, index)){
 				index = Random.Range (0, objects.Length);
 			}
-
-
+				
 				
 			Debug.Log("object "+objects[index]);
 			for (int j = 0; j < currentObjects [i].Count; j++) {
 				currentObjects [i][j].text = objects [index];
 			}
-			usedIndexs [i] = index;
+			usedIndexs [index] = 1;
+
+			counter++;
 		}
 	}
 
@@ -109,7 +127,6 @@ public class ObjectList{
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -121,14 +138,13 @@ public class ObjectList{
 	/// <param name="array">The int array to look through</param>
 	/// <param name="num">The number to make sure that is not already present in the array.</param>
 	/// <param name="maxIndex">The maximum index to look up to in the array (exclusive)</param>
-	public bool usedBefore(int[] array, int num, int maxIndex){
-		for (int i = 0; i < maxIndex; i++) {
-			if (array [i] == num) {
-				return true;
-			}
+	public bool usedBefore(int[] array, int num){
+		
+		if (array [num] == 1) {
+			return true;
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 	/// <summary>
