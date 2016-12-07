@@ -12,11 +12,11 @@ public class Rewards : MonoBehaviour {
     /// </summary>
     public void PrepareRewards()
     {
-        int coins  = 50000000,
-            earned = 2500000;
+        long coins  = PlayerData.getInstance().getMonies(),
+             earned = 2500000L;
 
-        string oldRank = "Blah",
-               newRank = "BlahBlah";
+        string oldRank = EnumRank.getRankFromCoins(coins).name,
+               newRank = EnumRank.getRankFromCoins(coins + earned).name;
 
         Text tRank       = GameObject.Find("tRank_rew")      .GetComponent<Text>(),
              tNewRank    = GameObject.Find("tNewRank_rew")   .GetComponent<Text>(),
@@ -29,7 +29,7 @@ public class Rewards : MonoBehaviour {
 
         tCoins.text      = string.Concat("$", coins.ToString());
         tGetCoins.text   = string.Concat("+$", earned.ToString());
-        tTotalCoins.text = string.Concat("$", (coins + earned).ToString());
+        tTotalCoins.text = string.Concat("$", PlayerData.getInstance().addToMonies(earned).ToString());
 
     }
 
