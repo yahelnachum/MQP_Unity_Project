@@ -46,9 +46,9 @@ public class ObjectList{
 		usedIndexs = new int[objects.Length];
 
 		//initialize to 0, reperesenting nothing has been used yet
-		foreach (int i in usedIndexs)
+		for (int j =0; j<usedIndexs.Length; j++ )
 		{
-			usedIndexs[i] = 0;
+			usedIndexs[j] = 0;
 		}
 
 		// get text objects from game
