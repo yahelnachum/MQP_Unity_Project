@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SplashScreen : MonoBehaviour {
 
-	private float splashScreenWaitTime = 1f; // in seconds
+	private float splashScreenWaitTime = 5f; // in seconds
 	private float gopherIntroductionWaitTime = 1f; // in seconds
 	// Use this for initialization
 	void Start () {

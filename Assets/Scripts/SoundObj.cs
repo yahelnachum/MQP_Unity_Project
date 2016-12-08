@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SoundObj : MonoBehaviour {
 
-	public AudioClip shootSound;
+	public AudioClip sound;
 	private AudioSource source;
 
 	// Use this for initialization
@@ -19,6 +19,6 @@ public class SoundObj : MonoBehaviour {
 
 	public void Play (){
 		Debug.Log ("PLAYING");
-		source.PlayOneShot(shootSound,1.0f);
+		source.PlayOneShot(sound,1.0f);
 	}
 }
