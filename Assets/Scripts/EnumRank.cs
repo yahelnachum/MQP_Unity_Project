@@ -17,11 +17,11 @@ public class EnumRank
 
     public static EnumRank[] Ranks = 
     {
-        new EnumRank("Wimpy N00b",              0L,         0L),
-        new EnumRank("Junior Seeker",           1L,         50000000L),
-        new EnumRank("Mediocre Scavenger",      50000000L,  100000000L),
-        new EnumRank("Assistant Investigator",  100000000L, 200000000L),
-        new EnumRank("Rising Detective",        200000000L, long.MaxValue)
+        new EnumRank("Wimpy N00b",                     0L,        0L),
+        new EnumRank("Junior Seeker",                  1L,  5000000L),
+        new EnumRank("Mediocre Scavenger",       5000000L, 10000000L),
+        new EnumRank("Assistant Investigator",  10000000L, 20000000L),
+        new EnumRank("Rising Detective",        20000000L, long.MaxValue)
     };
 
     public static EnumRank getRankFromCoins(long numCoins)
