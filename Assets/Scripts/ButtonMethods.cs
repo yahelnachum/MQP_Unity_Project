@@ -131,7 +131,6 @@ public class ButtonMethods : MonoBehaviour {
 		Debug.Log ("POST PLAYING");
 
 
-
 		Debug.Log ("Going from " + current+ " to " +next);
 
 		SwitchPanels.changePanelStatic (next+":activate," +current+":deactivate");
@@ -139,6 +138,40 @@ public class ButtonMethods : MonoBehaviour {
 		Debug.Log ("CHANGED?");
 
 
+	}
+
+	public void Test(){
+
+		Debug.Log ("START FIR");
+
+		float len = source.clip.length;
+
+		source.PlayOneShot (sound, 1.0f);
+
+
+		StartCoroutine(delayedPlay(len));
+
+		Debug.Log ("END FIR");
+
+
+	}
+
+
+
+
+	IEnumerator delayedPlay (float timeToWait)
+	{
+
+		Debug.Log ("START SEC");
+
+
+
+		yield return new WaitForSeconds(timeToWait);
+
+
+		SwitchPanels.changePanelStatic (next+":activate," +current+":deactivate");
+
+		Debug.Log ("END SEC");
 	}
 
 }
