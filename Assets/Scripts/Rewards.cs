@@ -10,7 +10,7 @@ public class Rewards : MonoBehaviour {
     /// where I should be getting these values from, so I'm sort of making them
     /// up right now. Also not sure how to get this function called.
     /// </summary>
-    public void PrepareRewards()
+    public static void PrepareRewards()
     {
         long coins  = PlayerData.getInstance().getMonies(),
              earned = 2500000L;
@@ -25,11 +25,13 @@ public class Rewards : MonoBehaviour {
              tTotalCoins = GameObject.Find("tTotalCoins_rew").GetComponent<Text>();
 
         tRank.text    = string.Concat("Rank:\n", oldRank);
-        tNewRank.text = string.Compare(oldRank, newRank) == 0 ? string.Concat("\u2193\n", newRank) : "";
+        tNewRank.text = string.Compare(oldRank, newRank) != 0 ? string.Concat("\u2193\n", newRank) : "";
 
         tCoins.text      = string.Concat("$", coins.ToString());
         tGetCoins.text   = string.Concat("+$", earned.ToString());
         tTotalCoins.text = string.Concat("$", PlayerData.getInstance().addToMonies(earned).ToString());
+
+        // Add any SFX here.
 
     }
 
@@ -55,6 +57,10 @@ public class Rewards : MonoBehaviour {
                 break;
             default:
                 Debug.Log("Default case reached for rewards panel: this is not a good thing! (tm)");
+
+                // Fail gracefully.
+				PlayerData.getInstance ().saveData ();
+                SwitchPanels.changePanelStatic("pMain:activate,pRewards:deactivate");
                 break;
         }
     }

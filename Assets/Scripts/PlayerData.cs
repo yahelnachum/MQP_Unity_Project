@@ -4,6 +4,7 @@ using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+[System.Serializable]
 public class PlayerData {
 
 	private string fileName = "playerData.dat";

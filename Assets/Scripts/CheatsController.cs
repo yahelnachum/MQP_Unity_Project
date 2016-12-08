@@ -28,4 +28,18 @@ public class CheatsController : MonoBehaviour {
 		UpdatePanel.startUpdate ();
 	}
 
+    public void goRewards()
+    {
+        SwitchPanels.changePanelStatic("pRewards:activate,pCheats:deactivate");
+        Rewards.PrepareRewards();
+    }
+
+    public void testEnumRank()
+    {
+        for (long coins = 0; coins < 1000000000; coins += 25000000)
+        {
+            Debug.Log(coins.ToString() + EnumRank.getRankFromCoins(coins).name);
+        }
+    }
+
 }
