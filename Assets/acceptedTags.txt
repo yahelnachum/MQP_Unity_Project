@@ -49,7 +49,7 @@ cross,stake,stakes
 crown,crowns,king,kings,queen,queens
 halo,halos,holy
 jesus,christ
-mary
+virgin mary,mary
 wing,wings,bird,birds,flamingo,flamingos,parrot,parrots,jay,jays,angel,angels
 bridge,bridges
 house,houses,building,buildings
