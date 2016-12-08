@@ -384,6 +384,9 @@ public class HttpRequest : MonoBehaviour {
 				GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
 				pAugmentedReality.SetActive (true);
 				AugmentedReality.getInstance ().setNewImage ();
+			}else if( PlayerData.getInstance ().getCurrentNarrativeChunk () == 4){
+				//
+				SwitchPanels.changePanelStatic ("pUpdate:activate");
 			} else {
 				GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
 				pRewards.SetActive (true);
