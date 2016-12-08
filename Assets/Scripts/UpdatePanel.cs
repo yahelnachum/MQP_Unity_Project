@@ -40,18 +40,21 @@ public class UpdatePanel : MonoBehaviour {
 
 		GameObject bar = GameObject.Find ("pLoadingBar");
 		RectTransform rect = bar.GetComponent<RectTransform> ();
+
 		GameObject title = GameObject.Find ("tUpdate");
 		Text word = title.GetComponent<Text> (); 
-		GameObject button = GameObject.Find ("bProceed");
-		//Button butt = button.
-		button.SetActive(false);
-		GameObject panel = GameObject.Find ("pUpdate");
 
+		GameObject button = GameObject.Find ("bProceed");
+		button.SetActive(false);
+
+		GameObject panel = GameObject.Find ("pUpdate");
 		AudioSource song = panel.GetComponent<AudioSource> ();
+
+		GameObject icon = GameObject.Find ("iLoading");
+
 
 		for (int i = 0; i < 100; i++) {
 			
-
 			float temp = rect.anchorMax.x;
 			val = temp + 0.01f;
 
@@ -79,16 +82,15 @@ public class UpdatePanel : MonoBehaviour {
 				word.text = "Almost there!";
 			}
 
-
-
-
-
+			spin (icon);
+				
 			yield return new WaitForSeconds (0.1f);
 
 		}
 
 		word.text = "Done!";
 
+		icon.SetActive(false);
 		button.SetActive(true);
 
 		//song.Stop():
@@ -114,6 +116,16 @@ public class UpdatePanel : MonoBehaviour {
 
 		Debug.Log ("SONG IS " + len + "LONG");
 
-		song.PlayOneShot (crap, 1.0f);	}
+		song.PlayOneShot (crap, 1.0f);	
+	}
+
+
+	public void spin(GameObject icon){
+
+		//rotate object some amount
+
+	}
 
 }
+
+
