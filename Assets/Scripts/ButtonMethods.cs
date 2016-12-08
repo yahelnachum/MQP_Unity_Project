@@ -42,6 +42,7 @@ public class ButtonMethods : MonoBehaviour {
 	public string next;
 
 	public AudioClip sound;
+	public AudioClip sound2;
 	private AudioSource source;
 
 	// Use this for initialization
@@ -163,6 +164,41 @@ public class ButtonMethods : MonoBehaviour {
 		Debug.Log ("Going from " + current+ " to " +next);
 
 		SwitchPanels.changePanelStatic (next+":activate," +current+":deactivate");
+
+		Debug.Log ("END SEC");
+	}
+
+	public void Play2(){
+
+		Debug.Log ("START FIR");
+
+		float len = source.clip.length;
+
+		source.PlayOneShot (sound, 1.0f);
+
+		StartCoroutine(delSound(len));
+
+		Debug.Log ("END FIR");
+
+	}
+
+
+	//TODO
+	//Shorten files so that delay is less apparent
+
+
+	IEnumerator delSound (float timeToWait)
+	{
+
+		Debug.Log ("START SEC");
+
+		yield return new WaitForSeconds(timeToWait);
+
+		//Debug.Log ("Going from " + current+ " to " +next);
+
+		//SwitchPanels.changePanelStatic (next+":activate," +current+":deactivate");
+
+		source.PlayOneShot (sound2, 1.0f);
 
 		Debug.Log ("END SEC");
 	}

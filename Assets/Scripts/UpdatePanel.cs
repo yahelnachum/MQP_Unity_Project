@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI; 
 
 public class UpdatePanel : MonoBehaviour {
 
 	private static UpdatePanel instance = new UpdatePanel();
+	public AudioClip newClip;
+
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="UpdatePanel"/> class.
@@ -33,12 +36,22 @@ public class UpdatePanel : MonoBehaviour {
 	/// </summary>
 	/// <returns>An IEnumerator for the sake of waiting</returns>
 	/// <param name="val">Optional parameter to adjust fill rate.</param>
-	public static IEnumerator progress(float val){
+	public  IEnumerator progress(float val){
+
+		GameObject bar = GameObject.Find ("pLoadingBar");
+		RectTransform rect = bar.GetComponent<RectTransform> ();
+		GameObject title = GameObject.Find ("tUpdate");
+		Text word = title.GetComponent<Text> (); 
+		GameObject button = GameObject.Find ("bProceed");
+		//Button butt = button.
+		button.SetActive(false);
+		GameObject panel = GameObject.Find ("pUpdate");
+
+		AudioSource song = panel.GetComponent<AudioSource> ();
 
 		for (int i = 0; i < 100; i++) {
 			
-			GameObject bar = GameObject.Find ("pLoadingBar");
-			RectTransform rect = bar.GetComponent<RectTransform> ();
+
 			float temp = rect.anchorMax.x;
 			val = temp + 0.01f;
 
@@ -46,17 +59,61 @@ public class UpdatePanel : MonoBehaviour {
 			//rect.position = new Vector2 (0, 0);
 			//rect.anchorMax = new Vector2 (0.9f, 1);
 
-			yield return new WaitForSeconds (0.02f);
+			if (i == 20) {
+				word.text = "Isn't this fun?";
+			}
+
+			if (i == 40) {
+				word.text = "Just a bit longer";
+			}
+
+			if (i == 60) {
+				word.text = "Don't worry, all your files are exactly where you left them";
+			}
+
+			if (i == 80) {
+				word.text = ";)";
+			}
+
+			if (i == 85) {
+				word.text = "Almost there!";
+			}
+
+
+
+
+
+			yield return new WaitForSeconds (0.1f);
 
 		}
+
+		word.text = "Done!";
+
+		button.SetActive(true);
+
+		//song.Stop():
+
+		song.Stop ();
+
+		end (song);
 
 	}
 
 	//used by button to call progress function
 	public static void startUpdate(){
 
-		UpdatePanel.getInstance().StartCoroutine(progress (0.1f));
+		UpdatePanel.getInstance().StartCoroutine(instance.progress (0.1f));
 
 	}
+
+	public void end(AudioSource song){
+
+		AudioClip crap = Resources.Load ("ding") as AudioClip;
+
+		float len = crap.length;
+
+		Debug.Log ("SONG IS " + len + "LONG");
+
+		song.PlayOneShot (crap, 1.0f);	}
 
 }
