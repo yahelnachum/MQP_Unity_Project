@@ -71,24 +71,21 @@ public class ButtonMethods : MonoBehaviour {
 	}
 	public void NormalPlay(){
 		Play ();
-		changePanel();
+		Switch();
 	}
 
 	public void sPlay(){
 		source.PlayOneShot (sound, 1.0f);
 	}
 
-	public IEnumerator Play (){
+	public void Play (){
 		Debug.Log ("PLAYING");
 		source.PlayOneShot (sound, 1.0f);
 		Debug.Log ("FINISH PLAYING");
 
-		yield return new WaitForSeconds (20.0f);
-
-
 	}
 
-	public void changePanel(){
+	public void Switch(){
 
 		Debug.Log ("Going from " + current+ " to " +next);
 
@@ -115,10 +112,8 @@ public class ButtonMethods : MonoBehaviour {
 
 		yield return new WaitForSeconds (5.0f);
 
-
-
 		//Play ();
-		changePanel ();
+		Switch ();
 
 	}
 
@@ -130,7 +125,6 @@ public class ButtonMethods : MonoBehaviour {
 
 		Debug.Log ("POST PLAYING");
 
-
 		Debug.Log ("Going from " + current+ " to " +next);
 
 		SwitchPanels.changePanelStatic (next+":activate," +current+":deactivate");
@@ -140,7 +134,7 @@ public class ButtonMethods : MonoBehaviour {
 
 	}
 
-	public void Test(){
+	public void Play_Switch(){
 
 		Debug.Log ("START FIR");
 
@@ -148,26 +142,25 @@ public class ButtonMethods : MonoBehaviour {
 
 		source.PlayOneShot (sound, 1.0f);
 
-
-		StartCoroutine(delayedPlay(len));
+		StartCoroutine(delayAct(len));
 
 		Debug.Log ("END FIR");
-
 
 	}
 
 
+	//TODO
+	//Shorten files so that delay is less apparent
 
 
-	IEnumerator delayedPlay (float timeToWait)
+	IEnumerator delayAct (float timeToWait)
 	{
 
 		Debug.Log ("START SEC");
 
-
-
 		yield return new WaitForSeconds(timeToWait);
 
+		Debug.Log ("Going from " + current+ " to " +next);
 
 		SwitchPanels.changePanelStatic (next+":activate," +current+":deactivate");
 
