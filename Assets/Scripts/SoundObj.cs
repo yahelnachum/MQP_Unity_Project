@@ -20,5 +20,8 @@ public class SoundObj : MonoBehaviour {
 	public void Play (){
 		Debug.Log ("PLAYING");
 		source.PlayOneShot(sound,1.0f);
+		Debug.Log ("FINISH PLAYING");
+
+
 	}
 }
