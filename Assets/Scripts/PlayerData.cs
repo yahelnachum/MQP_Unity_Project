@@ -10,12 +10,27 @@ public class PlayerData {
 
 	private static PlayerData data = new PlayerData();
 	private int currentNarrativeChunk = 0;
+    private long monies = 0;
 
 	private PlayerData(){}
 
 	public static PlayerData getInstance(){
 		return data;
 	}
+
+    public long getMonies() {
+        return this.monies;
+    }
+
+    public void resetMonies()
+    {
+        this.monies = 0;
+    }
+
+    public long addToMonies(long toAdd)
+    {
+        return this.monies += toAdd;
+    }
 
 	public int getCurrentNarrativeChunk(){
 		return currentNarrativeChunk;
@@ -48,7 +63,7 @@ public class PlayerData {
 		Debug.Log ("Saving Player Data");
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Open (Application.persistentDataPath + "/" + fileName, FileMode.OpenOrCreate);
-		bf.Serialize (file, currentNarrativeChunk);
+		bf.Serialize (file, this);
 		file.Close ();
 	}
 }
