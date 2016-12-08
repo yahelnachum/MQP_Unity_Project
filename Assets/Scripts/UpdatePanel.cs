@@ -84,7 +84,7 @@ public class UpdatePanel : MonoBehaviour {
 
 			spin (icon);
 				
-			yield return new WaitForSeconds (0.1f);
+			yield return new WaitForSeconds (0.3f);
 
 		}
 
