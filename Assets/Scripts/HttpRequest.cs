@@ -387,6 +387,7 @@ public class HttpRequest : MonoBehaviour {
 			}else if( PlayerData.getInstance ().getCurrentNarrativeChunk () == 4){
 				//
 				SwitchPanels.changePanelStatic ("pUpdate:activate");
+				UpdatePanel.startUpdate ();
 			} else {
 				GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
 				pRewards.SetActive (true);
@@ -394,6 +395,8 @@ public class HttpRequest : MonoBehaviour {
 				GameObject confetti = StartGame.findInactive ("confetti", "vMenu")[0];
 				Animation anim = confetti.GetComponent<Animation> ();
 				anim.Play ();
+
+				Rewards.PrepareRewards ();
 			}
 		}
 	}
