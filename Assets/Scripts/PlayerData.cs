@@ -45,6 +45,10 @@ public class PlayerData {
 		Debug.Log ("Incrementing the current narrative chunk to chunk " + currentNarrativeChunk);
 	}
 
+	public void setCurrentNarrativeChunk(int newCurrentNarrativeChunk){
+		currentNarrativeChunk = newCurrentNarrativeChunk;
+	}
+
 	public string getFilePath(){
 		return Application.persistentDataPath + "/" + fileName;
 	}

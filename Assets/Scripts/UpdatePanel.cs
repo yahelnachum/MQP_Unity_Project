@@ -37,6 +37,8 @@ public class UpdatePanel : MonoBehaviour {
 			float init = Time.realtimeSinceStartup;
 			rect.anchorMax = new Vector2 (current, 1);
 
+			//spin (icon);
+
 			float delta = Time.realtimeSinceStartup - init;
 			if (delta < 1f / fps) {
 				yield return new WaitForSeconds (1f / fps - delta);
@@ -76,8 +78,6 @@ public class UpdatePanel : MonoBehaviour {
 		yield return StartCoroutine(load (0.6f, 0.8f, 4f, rect));
 		word.text = "Almost there!";
 		yield return StartCoroutine(load (0.8f, 1.0f, 1f, rect));
-
-		//spin (icon);
 
 		word.text = "Done!";
 
