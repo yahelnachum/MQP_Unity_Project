@@ -4,7 +4,7 @@ using System.Collections;
 public class PlaySound : MonoBehaviour {
 
 
-	private static PlaySound instance = new PlaySound();
+	private static PlaySound instance = null;
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="UpdatePanel"/> class.
