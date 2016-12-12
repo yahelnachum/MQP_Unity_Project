@@ -56,11 +56,9 @@ public class AugmentedReality : MonoBehaviour {
 	private float minWaitTime = 1f; // in seconds
 	private float maxWaitTime = 2f; // in seconds
 	private float firstWaitTime = 1f; // in seconds
-	private bool firstTime = true;
 
 	IEnumerator WaitForPanelSwitch(){
-		if (firstTime) {
-			firstTime = false;
+		if (PlayerData.getInstance().getCurrentNarrativeChunk() == 3) {
 			yield return new WaitForSeconds (firstWaitTime);
 			List<GameObject> panel = StartGame.findInactive ("pError", "pAugmentedReality");
 			panel [0].SetActive (true);
