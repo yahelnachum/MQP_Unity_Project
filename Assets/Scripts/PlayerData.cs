@@ -13,7 +13,10 @@ public class PlayerData {
 	private int currentNarrativeChunk = 0;
     private long monies = 0;
 
-	private PlayerData(){}
+	private PlayerData(){
+		currentNarrativeChunk = 0;
+		monies = 0;
+	}
 
 	public static PlayerData getInstance(){
 		return data;
@@ -42,6 +45,10 @@ public class PlayerData {
 		Debug.Log ("Incrementing the current narrative chunk to chunk " + currentNarrativeChunk);
 	}
 
+	public void setCurrentNarrativeChunk(int newCurrentNarrativeChunk){
+		currentNarrativeChunk = newCurrentNarrativeChunk;
+	}
+
 	public string getFilePath(){
 		return Application.persistentDataPath + "/" + fileName;
 	}
@@ -52,11 +59,12 @@ public class PlayerData {
 			Debug.Log ("data file found");
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (getFilePath(), FileMode.Open);
-			currentNarrativeChunk = (int)bf.Deserialize (file);
+			data = (PlayerData)bf.Deserialize (file);
 			file.Close ();
 		} else {
 			Debug.Log ("data file NOT found");
 			currentNarrativeChunk = 0;
+			monies = 0;
 		}
 	}
 

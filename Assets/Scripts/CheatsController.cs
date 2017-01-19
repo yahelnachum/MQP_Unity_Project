@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using UnityEngine.UI;
+using System;
 
 public class CheatsController : MonoBehaviour {
 
@@ -41,5 +42,10 @@ public class CheatsController : MonoBehaviour {
             Debug.Log(coins.ToString() + EnumRank.getRankFromCoins(coins).name);
         }
     }
+
+	public void setCurrentNarrativeChunk(Text asset){
+		Debug.Log(asset.GetComponent<Text> ().text);
+		PlayerData.getInstance ().setCurrentNarrativeChunk (Int32.Parse (asset.GetComponent<Text> ().text));
+	}
 
 }

@@ -50,10 +50,11 @@ public class Rewards : MonoBehaviour {
 				PlayerData.getInstance ().saveData ();
                 SwitchPanels.changePanelStatic("pMain:activate,pRewards:deactivate");
                 break;
-            case 6:
-            case 8:
-            case 9:
-                SwitchPanels.changePanelStatic("pSecureCall:activate,pRewards:deactivate");
+			case 6:
+			case 8:
+			case 9:
+				SwitchPanels.changePanelStatic ("pSecureCall:activate,pRewards:deactivate");
+				SecureCall.getInstance ().startTimer ();
                 break;
             default:
                 Debug.Log("Default case reached for rewards panel: this is not a good thing! (tm)");
