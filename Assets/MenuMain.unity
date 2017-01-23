@@ -312,7 +312,7 @@ GameObject:
   - 222: {fileID: 13161492}
   - 114: {fileID: 13161491}
   m_Layer: 5
-  m_Name: tRank
+  m_Name: tRank_main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1893,7 +1893,7 @@ GameObject:
   - 222: {fileID: 249932281}
   - 114: {fileID: 249932280}
   m_Layer: 5
-  m_Name: tCoins
+  m_Name: tCoins_main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10902,7 +10902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1355791380
 RectTransform:
   m_ObjectHideFlags: 0
