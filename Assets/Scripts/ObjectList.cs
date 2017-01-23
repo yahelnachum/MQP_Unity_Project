@@ -74,12 +74,35 @@ public class ObjectList{
 			
 	}
 
+    public void prepareScore()
+    {
+        long coins = PlayerData.getInstance().getMonies();
+
+        string oldRank = EnumRank.getRankFromCoins(coins).name;
+
+        Text tRank  = GameObject.Find("tRank_main") .GetComponent<Text>(),
+             tCoins = GameObject.Find("tCoins_main").GetComponent<Text>();
+
+        tRank.text = string.Concat("Rank:\n", oldRank);
+        
+        tCoins.text = string.Concat("$", coins.ToString());
+        
+    }
+
+    public static void pickCurrentObjectsStatic()
+    {
+        ObjectList.getInstance().pickCurrentObjects();
+    }
+
 	/// <summary>
 	/// Picks a new set of 3 objects to give to the player and displays them in the main menu panel.
 	/// </summary>
 	/// 
 	/// Todo: get it so that the list resets immediately if exhausted
+    /// Todo: update the rank and money
 	public void pickCurrentObjects(){
+
+        prepareScore();
 		
 		for (int i = 0; i < currentObjects.Length; i++) {
 

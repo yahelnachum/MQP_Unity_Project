@@ -9,6 +9,8 @@ public class StartGame : MonoBehaviour {
 	
 		PlayerData data = PlayerData.getInstance ();
 		data.loadData ();
+
+        ObjectList.pickCurrentObjectsStatic();
 	}
 
 	public static List<GameObject> findInactive(string objName, string rootObjName){
