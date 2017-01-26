@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UpdatePanel : MonoBehaviour {
 
-	private static UpdatePanel instance = new UpdatePanel();
+	private static UpdatePanel instance = null;
 	public AudioClip newClip;
 
 
@@ -101,15 +101,15 @@ public class UpdatePanel : MonoBehaviour {
 
 	}
 
-	public void end(AudioSource song){
+	public void end(AudioSource source){
 
-		AudioClip crap = Resources.Load ("ding") as AudioClip;
+		AudioClip fx = Resources.Load ("ding") as AudioClip;
 
-		float len = crap.length;
+		float len = fx.length;
 
 		Debug.Log ("SONG IS " + len + "LONG");
 
-		song.PlayOneShot (crap, 1.0f);	
+		source.PlayOneShot (fx, 1.0f);	
 	}
 
 

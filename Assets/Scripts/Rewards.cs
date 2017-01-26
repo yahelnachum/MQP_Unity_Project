@@ -49,6 +49,7 @@ public class Rewards : MonoBehaviour {
 				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
 				PlayerData.getInstance ().saveData ();
                 SwitchPanels.changePanelStatic("pMain:activate,pRewards:deactivate");
+                ObjectList.pickCurrentObjectsStatic();
                 break;
 			case 6:
 			case 8:
