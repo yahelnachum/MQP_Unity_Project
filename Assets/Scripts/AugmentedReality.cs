@@ -18,7 +18,7 @@ public class AugmentedReality : MonoBehaviour {
 			GameObject singleton = new GameObject ();
 			augmentedRealityInstance = singleton.AddComponent<AugmentedReality> ();
 
-			augmentedRealityInstance.pARImage = (GameObject)StartGame.findInactive ("pARImage", "vMenu")[0];
+			augmentedRealityInstance.pARImage = (GameObject)StartGame.findInactive ("pARImageBackground", "vMenu")[0];
 
 			int cwCamera = Webcam.getInstance ().cwCamera;
 			augmentedRealityInstance.pARImage.transform.localRotation = Quaternion.AngleAxis (-cwCamera * 1f, Vector3.back);
@@ -53,9 +53,9 @@ public class AugmentedReality : MonoBehaviour {
 		StartCoroutine (WaitForPanelSwitch ());
 	}
 
-	private float minWaitTime = 1f; // in seconds
+	private float minWaitTime = 10f; // in seconds
 	private float maxWaitTime = 2f; // in seconds
-	private float firstWaitTime = 1f; // in seconds
+	private float firstWaitTime = 5f; // in seconds
 
 	IEnumerator WaitForPanelSwitch(){
 		if (PlayerData.getInstance().getCurrentNarrativeChunk() == 3) {

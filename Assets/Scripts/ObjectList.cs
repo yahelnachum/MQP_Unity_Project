@@ -80,8 +80,8 @@ public class ObjectList{
 
         string oldRank = EnumRank.getRankFromCoins(coins).name;
 
-        Text tRank  = GameObject.Find("tRank_main") .GetComponent<Text>(),
-             tCoins = GameObject.Find("tCoins_main").GetComponent<Text>();
+		Text tRank  = StartGame.findInactive("tRank_main","vMenu")[0] .GetComponent<Text>(),
+		tCoins = StartGame.findInactive("tCoins_main","vMenu")[0].GetComponent<Text>();
 
         tRank.text = string.Concat("Rank:\n", oldRank);
         

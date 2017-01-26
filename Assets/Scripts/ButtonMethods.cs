@@ -23,7 +23,7 @@ public class ButtonMethods : MonoBehaviour {
 		}
 	}*/
 
-	private static ButtonMethods instance = new ButtonMethods();
+	private static ButtonMethods instance = null;
 
 
 	private ButtonMethods () {}
