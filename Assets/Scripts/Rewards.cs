@@ -4,6 +4,16 @@ using System.Collections;
 
 public class Rewards : MonoBehaviour {
 
+	public AudioClip sound;
+	private AudioSource source;
+
+	private float callTime = 30f; // in seconds
+
+	public void Play1 (){
+		Debug.Log ("PLAYING");
+		source.PlayOneShot(sound,1.0f);
+	}
+
 
 	/// <summary>
     /// Function used to set all values on the rewards page. I'm not quite sure
@@ -34,6 +44,12 @@ public class Rewards : MonoBehaviour {
         // Add any SFX here.
 
     }
+
+	void Start(){
+		Debug.Log ("Initializing sound object for tuts");
+		source = GetComponent<AudioSource>();
+		//StartCoroutine (StartTutorialTimer ());
+	}
 
     public void ProcessNextBit()
     {
