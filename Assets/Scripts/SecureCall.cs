@@ -3,6 +3,14 @@ using System.Collections;
 
 public class SecureCall : MonoBehaviour {
 
+	public AudioClip sound;
+	private AudioSource source;
+
+	public void Play1 (){
+		Debug.Log ("PLAYING");
+		source.PlayOneShot(sound,1.0f);
+	}
+
 	private static SecureCall secureCallInstance = null;
 
 	private SecureCall(){
@@ -23,7 +31,12 @@ public class SecureCall : MonoBehaviour {
 	}
 
 	public IEnumerator startSecureCallPanel(){
-		yield return new WaitForSeconds (3f);
+
+		Debug.Log ("Initializing sound object for call");
+		source = GetComponent<AudioSource>();
+		yield return new WaitForSeconds (46f);
+		Play1 ();
+
 		SwitchPanels.changePanelStatic ("pMain:activate,pSecureCall:deactivate");
 		PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
 		PlayerData.getInstance ().saveData ();

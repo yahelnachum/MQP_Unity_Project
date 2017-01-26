@@ -42,10 +42,9 @@ public class TutorialMainMenu : MonoBehaviour {
 //	}
 //
 	void Start(){
-		Debug.Log ("Initializing sound object for tuts");
+		Debug.Log ("Initializing sound object for call");
 		source = GetComponent<AudioSource>();
 		StartCoroutine (StartTutorialTimer ());
-
 	}
 
 	private IEnumerator StartTutorialTimer(){
