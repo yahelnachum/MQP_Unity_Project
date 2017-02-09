@@ -55,6 +55,9 @@ public class Webcam : MonoBehaviour{
 				cwCamera = 90;//mCamera.videoRotationAngle;
 				pCameraStream.transform.localRotation = Quaternion.AngleAxis (-cwCamera * 1f, Vector3.back);
 				img.uvRect = new Rect (1f, 0f, -1f, 1f);
+				if(Application.platform == RuntimePlatform.Android){
+					img.uvRect = new Rect (1f, 1f, -1f, -1f);
+				}
 
 				// scale to fit screen
 				RectTransform rectT = (RectTransform)pCameraStream.transform;
