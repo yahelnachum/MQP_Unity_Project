@@ -39,8 +39,9 @@ public class SecureCall : MonoBehaviour {
 
 		Debug.Log ("Initializing sound object for call");
 		source = GetComponent<AudioSource>();
+		Play1 ();
 		yield return new WaitForSeconds (46f);
-		//Play1 ();
+
 
 		SwitchPanels.changePanelStatic ("pMain:activate,pSecureCall:deactivate");
 		PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
