@@ -73,7 +73,21 @@ public class HttpRequest : MonoBehaviour {
 
 	}
 
+	public void startVisibleProcessDelay(){
+		// TODO: TJ's code here
+	}
+
+	public void endVisibleProcessDelayFailed(){
+		// TODO: TJ's code here
+	}
+
+	public void endVisibleProcessDelaySuccessful(){
+		// TODO: TJ's code here
+	}
+
 	public void makeRequest(byte[] imageData){
+		startVisibleProcessDelay ();
+
 		coroutines[0] = StartCoroutine(postClarifai(imageData));
 
 		if (cloudsightRequestInProgress == false) {
@@ -367,38 +381,51 @@ public class HttpRequest : MonoBehaviour {
 
 		if (foundCurrentObjects) {
 
-			Debug.Log (Application.persistentDataPath);
-			System.IO.File.WriteAllBytes (Application.persistentDataPath + 
-	  										"/image" + PlayerData.getInstance ().getCurrentNarrativeChunk () + ".jpg", imageByte);
+			endVisibleProcessDelaySuccessful ();
 
-			ObjectList.getInstance ().pickCurrentObjects ();
-			GameObject pCamera = GameObject.Find ("pCamera");
-			Webcam.getInstance().stopCamera ();
+			saveJPG(imageByte);
 
-			pCamera.SetActive (false);
+			switchToCorrectPanel ();
 
-			// go to augmented reality panel for chunks 3,5,6,7,8,9
-			if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 3 ||
-			    PlayerData.getInstance ().getCurrentNarrativeChunk () > 4) {
-
-				GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
-				pAugmentedReality.SetActive (true);
-				AugmentedReality.getInstance ().setNewImage ();
-			}else if( PlayerData.getInstance ().getCurrentNarrativeChunk () == 4){
-				//
-				SwitchPanels.changePanelStatic ("pUpdate:activate");
-				UpdatePanel.startUpdate ();
-			} else {
-				GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
-				pRewards.SetActive (true);
-
-				GameObject confetti = StartGame.findInactive ("confetti", "vMenu")[0];
-				Animation anim = confetti.GetComponent<Animation> ();
-				anim.Play ();
-
-				Rewards.PrepareRewards ();
-			}
+		} else {
+			endVisibleProcessDelayFailed ();
 		}
+	}
+
+	private void switchToCorrectPanel(){
+		ObjectList.getInstance ().pickCurrentObjects ();
+		GameObject pCamera = GameObject.Find ("pCamera");
+		Webcam.getInstance ().stopCamera ();
+
+		pCamera.SetActive (false);
+
+		// go to augmented reality panel for chunks 3,5,6,7,8,9
+		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 3 ||
+			PlayerData.getInstance ().getCurrentNarrativeChunk () > 4) {
+
+			GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
+			pAugmentedReality.SetActive (true);
+			AugmentedReality.getInstance ().setNewImage ();
+		} else if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 4) {
+			//
+			SwitchPanels.changePanelStatic ("pUpdate:activate");
+			UpdatePanel.startUpdate ();
+		} else {
+			GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
+			pRewards.SetActive (true);
+
+			GameObject confetti = StartGame.findInactive ("confetti", "vMenu") [0];
+			Animation anim = confetti.GetComponent<Animation> ();
+			anim.Play ();
+
+			Rewards.PrepareRewards ();
+		}
+	}
+
+	private void saveJPG(byte[] imageByte){
+		Debug.Log (Application.persistentDataPath);
+		System.IO.File.WriteAllBytes (Application.persistentDataPath +
+			"/image" + PlayerData.getInstance ().getCurrentNarrativeChunk () + ".jpg", imageByte);
 	}
 
 	private IEnumerator postWatson(byte[] imageByte, Text text)
