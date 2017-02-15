@@ -46,6 +46,8 @@ public class AugmentedReality : MonoBehaviour {
 		tex.LoadImage (imageData);
 		img.texture = tex;
 
+		SwitchPanels.changePanelStatic ("pARImageForeground0"+PlayerData.getInstance().getCurrentNarrativeChunk()+":activate");
+
 		startTimer ();
 	}
 
@@ -68,7 +70,7 @@ public class AugmentedReality : MonoBehaviour {
 
 		} else {
 			yield return new WaitForSeconds (minWaitTime);
-			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pRewards:activate");
+			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pRewards:activate,pARImageForeground0"+PlayerData.getInstance().getCurrentNarrativeChunk()+":deactivate");
 		}
 	}
 }
