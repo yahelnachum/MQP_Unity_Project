@@ -45,11 +45,18 @@ public class ObjectList{
 
 		usedIndexs = new int[objects.Length];
 
-		//initialize to 0, reperesenting nothing has been used yet
-		for (int j =0; j<usedIndexs.Length; j++ )
-		{
-			usedIndexs[j] = 0;
-		}
+        if (PlayerData.getInstance().getUsedObjIxs() != null)
+        {
+            this.usedIndexs = PlayerData.getInstance().getUsedObjIxs();
+        }
+        else
+        {
+            //initialize to 0, reperesenting nothing has been used yet
+            for (int j = 0; j < usedIndexs.Length; j++)
+            {
+                usedIndexs[j] = 0;
+            }
+        }
 
 		// get text objects from game
 		for (int i = 0; i < currentObjects.Length; i++) {
@@ -140,6 +147,9 @@ public class ObjectList{
 				currentObjects [i][j].text = objects [index];
 			}
 			usedIndexs [index] = 1;
+
+            PlayerData.getInstance().setUsedObjIxs(this.usedIndexs);
+            PlayerData.getInstance().saveData();
 
 			counter++;
 		}

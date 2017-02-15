@@ -12,6 +12,7 @@ public class PlayerData {
 	private static PlayerData data = new PlayerData();
 	private int currentNarrativeChunk = 0;
     private long monies = 0;
+    private int [] usedObjIxs = null;
 
 	private PlayerData(){
 		currentNarrativeChunk = 0;
@@ -21,6 +22,16 @@ public class PlayerData {
 	public static PlayerData getInstance(){
 		return data;
 	}
+
+    public int[] getUsedObjIxs()
+    {
+        return this.usedObjIxs;
+    }
+
+    public void setUsedObjIxs(int[] usedObjIxs)
+    {
+        this.usedObjIxs = usedObjIxs;
+    }
 
     public long getMonies() {
         return this.monies;
