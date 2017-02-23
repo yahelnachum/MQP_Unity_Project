@@ -44,6 +44,7 @@ public class ButtonMethods : MonoBehaviour {
 	public AudioClip sound;
 	public AudioClip sound2;
 	private AudioSource source;
+	public bool analPress;
 
 	// Use this for initialization
 	void Start () {
@@ -51,10 +52,24 @@ public class ButtonMethods : MonoBehaviour {
 
 		Debug.Log ("Initializing sound object");
 		source = GetComponent<AudioSource>();
+
+		analPress = false;
+
+
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		GameObject anal = StartGame.findInactive ("bAnalyze", "pCamera") [0];
+		bool  notGrey  = anal.GetComponent<Button> ().interactable ;
+
+		if (notGrey && analPress) {
+			Debug.Log ("STOP HERE");
+			analPress = false;
+			source.Stop ();
+
+		}
 
 	}
 
@@ -85,6 +100,18 @@ public class ButtonMethods : MonoBehaviour {
 		Debug.Log ("FINISH PLAYING");
 
 	}
+
+	public void PlayStop (){
+
+		Debug.Log ("PLAY_STOP");
+		//source.PlayOneShot (sound, 1.0f);
+		source.clip = sound;
+		source.Play ();
+		analPress = true;
+		Debug.Log ("FIN_PLAY_STOP");
+
+	}
+
 
 	public void Switch(){
 

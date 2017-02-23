@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37356424, g: 0.3811201, b: 0.35887662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356448, g: 0.3811204, b: 0.35887685, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1214,6 +1214,7 @@ MonoBehaviour:
   next: pInventory
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &121286779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2069,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 0}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &300310267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,6 +3377,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 0}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &407789490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,6 +3758,7 @@ MonoBehaviour:
   next: pRewards
   sound: {fileID: 8300000, guid: e5b8400b5e9c64be9b09dbff446cf088, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &490774132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4398,6 +4402,7 @@ MonoBehaviour:
   next: pMain
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &552098042
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4907,6 +4912,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &567804456
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5790,8 +5796,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current: 
   next: 
-  sound: {fileID: 8300000, guid: 954c187b42c50415aa39a27ba8dea8ea, type: 3}
+  sound: {fileID: 8300000, guid: 62ceb5e8f18614bc49031f0e431353e1, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &717063636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5843,7 +5850,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 717063635}
-        m_MethodName: Play
+        m_MethodName: PlayStop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6332,6 +6339,7 @@ MonoBehaviour:
   next: pNarrative
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &725181215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7901,6 +7909,7 @@ MonoBehaviour:
   next: pMain
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &986576121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8444,6 +8453,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &1051940681
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9386,6 +9396,7 @@ MonoBehaviour:
   next: pInventory
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &1160026216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10257,6 +10268,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: fe4aadf7798244ec1af3dd440bfc6296, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &1275690629
 GameObject:
   m_ObjectHideFlags: 0
@@ -10890,6 +10902,7 @@ MonoBehaviour:
   next: pChat
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &1335641944
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11703,6 +11716,7 @@ MonoBehaviour:
   next: pImageGallery
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &1431095377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12184,6 +12198,7 @@ MonoBehaviour:
   next: pMain
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &1478228312
 GameObject:
   m_ObjectHideFlags: 0
@@ -12410,6 +12425,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: 10e3541bf1f0d4eef930a10e786b9ccf, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &1483671591
 GameObject:
   m_ObjectHideFlags: 0
@@ -12851,6 +12867,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: 9770dc8d1afd54adda0a983a3197f614, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &1538740633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13197,6 +13214,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 0}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &1556557972
 GameObject:
   m_ObjectHideFlags: 0
@@ -13251,6 +13269,7 @@ MonoBehaviour:
   next: pInventory
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &1556557975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14952,6 +14971,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &1774259072
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15314,6 +15334,7 @@ MonoBehaviour:
   next: pMain
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &1812252870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16059,6 +16080,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 8300000, guid: 41e3e02144623412fb873ab4b09387d3, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!1 &1865323163
 GameObject:
   m_ObjectHideFlags: 0
@@ -16348,6 +16370,7 @@ MonoBehaviour:
   next: pMain
   sound: {fileID: 8300000, guid: ad5483f425ade4a6daf10c462c559c32, type: 3}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!82 &1902105225
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16879,6 +16902,7 @@ MonoBehaviour:
   next: 
   sound: {fileID: 0}
   sound2: {fileID: 0}
+  analPress: 0
 --- !u!114 &1969635272
 MonoBehaviour:
   m_ObjectHideFlags: 0
