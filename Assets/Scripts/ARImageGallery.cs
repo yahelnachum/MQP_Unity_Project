@@ -7,6 +7,8 @@ public class ARImageGallery : MonoBehaviour {
 	private static ARImageGallery arImageGallery = null;
 	private int[] narrativeNumbers = {3, 5, 6, 7, 8, 9};
 	private List<GameObject> panels;
+	private int ScreenWidth = Screen.width;
+	private int ScreenHeight = Screen.height;
 
 	private ARImageGallery(){}
 
@@ -53,7 +55,8 @@ public class ARImageGallery : MonoBehaviour {
 			// Find the position in the previous frame of each touch.
 			Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
 			Debug.Log ("TouchZeroPosition: "+touchZero.position);
-			Vector2 vector = new Vector2 (touchZero.position.x / 230f, touchZero.position.y / 420f);
+			//Vector2 vector = new Vector2 (touchZero.position.x / 230f, touchZero.position.y / 420f);
+			Vector2 vector = new Vector2 (touchZero.position.x / ScreenWidth, touchZero.position.y / ScreenHeight);
 			int i = getClosestPanelToVector (vector);
 			panels [i].GetComponent<RectTransform> ().anchorMin = vector;
 			panels [i].GetComponent<RectTransform> ().anchorMax = vector;
@@ -66,7 +69,7 @@ public class ARImageGallery : MonoBehaviour {
 		float closestMag = 2f;
 		for (int i = 0; i < panels.Count; i++) {
 			Vector2 vector1 = panels [i].GetComponent<RectTransform> ().anchorMin;
-			float mag = (vector - vector1).magnitude;
+			float mag = (vector - vector1).sqrMagnitude;
 			Debug.Log("Panel: "+i+" Magnetude: "+mag);
 			if (mag < closestMag) {
 				closestMag = mag;
