@@ -45,6 +45,7 @@ public class ButtonMethods : MonoBehaviour {
 	public AudioClip sound2;
 	private AudioSource source;
 	public bool analPress;
+	GameObject anal;
 
 	// Use this for initialization
 	void Start () {
@@ -54,6 +55,8 @@ public class ButtonMethods : MonoBehaviour {
 		source = GetComponent<AudioSource>();
 
 		analPress = false;
+		anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
+
 
 
 	}
@@ -61,7 +64,6 @@ public class ButtonMethods : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		GameObject anal = StartGame.findInactive ("bAnalyze", "pCamera") [0];
 		bool  notGrey  = anal.GetComponent<Button> ().interactable ;
 
 		if (notGrey && analPress) {

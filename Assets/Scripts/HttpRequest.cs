@@ -76,30 +76,30 @@ public class HttpRequest : MonoBehaviour {
 	public void startVisibleProcessDelay(){
 		// TODO: TJ's code here
 
-		GameObject anal = StartGame.findInactive ("bAnalyze", "pCamera") [0];
+		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = false;
 
-		GameObject can = StartGame.findInactive ("bCancel", "pCamera") [0];
+		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = false;
 	}
 
 	public void endVisibleProcessDelayFailed(){
 		// TODO: TJ's code here
 
-		GameObject anal = StartGame.findInactive ("bAnalyze", "pCamera") [0];
+		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = true;
 
-		GameObject can = StartGame.findInactive ("bCancel", "pCamera") [0];
+		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = true;
 	}
 
 	public void endVisibleProcessDelaySuccessful(){
 		// TODO: TJ's code here
 
-		GameObject anal = StartGame.findInactive ("bAnalyze", "pCamera") [0];
+		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = true;
 
-		GameObject can = StartGame.findInactive ("bCancel", "pCamera") [0];
+		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = true;
 	}
 
