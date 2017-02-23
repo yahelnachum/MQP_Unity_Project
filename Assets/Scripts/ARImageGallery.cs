@@ -54,11 +54,26 @@ public class ARImageGallery : MonoBehaviour {
 			Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
 			Debug.Log ("TouchZeroPosition: "+touchZero.position);
 			Vector2 vector = new Vector2 (touchZero.position.x / 230f, touchZero.position.y / 420f);
-			for (int i = 0; i < panels.Count; i++) {
-				panels [i].GetComponent<RectTransform> ().anchorMin = vector;
-				panels [i].GetComponent<RectTransform> ().anchorMax = vector;
-			}
+			int i = getClosestPanelToVector (vector);
+			panels [i].GetComponent<RectTransform> ().anchorMin = vector;
+			panels [i].GetComponent<RectTransform> ().anchorMax = vector;
 
 		}
+	}
+
+	public int getClosestPanelToVector(Vector2 vector){
+		int closestIndex = 0;
+		float closestMag = 2f;
+		for (int i = 0; i < panels.Count; i++) {
+			Vector2 vector1 = panels [i].GetComponent<RectTransform> ().anchorMin;
+			float mag = (vector - vector1).magnitude;
+			Debug.Log("Panel: "+i+" Magnetude: "+mag);
+			if (mag < closestMag) {
+				closestMag = mag;
+				closestIndex = i;
+			}
+		}
+
+		return closestIndex;
 	}
 }
