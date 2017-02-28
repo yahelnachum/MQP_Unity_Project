@@ -67,7 +67,12 @@ public class AugmentedReality : MonoBehaviour {
 
 		} else {
 			yield return new WaitForSeconds (minWaitTime);
-			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pRewards:activate,pARImageForeground0"+PlayerData.getInstance().getCurrentNarrativeChunk()+":deactivate");
+			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pRewardsCongrats:activate,pARImageForeground0"+PlayerData.getInstance().getCurrentNarrativeChunk()+":deactivate");
+			GameObject confetti = StartGame.findInactive ("confetti", "vMenu") [0];
+			Animation anim = confetti.GetComponent<Animation> ();
+			anim.Play ();
+
+			Rewards.PrepareRewards ();
 		}
 	}
 }

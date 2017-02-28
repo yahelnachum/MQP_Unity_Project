@@ -435,7 +435,7 @@ public class HttpRequest : MonoBehaviour {
 			SwitchPanels.changePanelStatic ("pUpdate:activate");
 			UpdatePanel.startUpdate ();
 		} else {
-			GameObject pRewards = pCamera.transform.parent.FindChild ("pRewards").gameObject;
+			GameObject pRewards = pCamera.transform.parent.FindChild ("pRewardsCongrats").gameObject;
 			pRewards.SetActive (true);
 
 			GameObject confetti = StartGame.findInactive ("confetti", "vMenu") [0];

@@ -28,11 +28,11 @@ public class Rewards : MonoBehaviour {
         string oldRank = EnumRank.getRankFromCoins(coins).name,
                newRank = EnumRank.getRankFromCoins(coins + earned).name;
 
-        Text tRank       = GameObject.Find("tRank_rew")      .GetComponent<Text>(),
-             tNewRank    = GameObject.Find("tNewRank_rew")   .GetComponent<Text>(),
-             tCoins      = GameObject.Find("tCoins_rew")     .GetComponent<Text>(),
-             tGetCoins   = GameObject.Find("tGetCoins_rew")  .GetComponent<Text>(),
-             tTotalCoins = GameObject.Find("tTotalCoins_rew").GetComponent<Text>();
+		Text tRank       = StartGame.findInactive("tRank_rew", "vMenu")[0].GetComponent<Text>(),
+			 tNewRank    = StartGame.findInactive("tNewRank_rew", "vMenu")[0].GetComponent<Text>(),
+			 tCoins      = StartGame.findInactive("tCoins_rew", "vMenu")[0].GetComponent<Text>(),
+			 tGetCoins   = StartGame.findInactive("tGetCoins_rew", "vMenu")[0].GetComponent<Text>(),
+			 tTotalCoins = StartGame.findInactive("tTotalCoins_rew", "vMenu")[0].GetComponent<Text>();
 
         tRank.text    = string.Concat("Rank:\n", oldRank);
         tNewRank.text = string.Compare(oldRank, newRank) != 0 ? string.Concat("\u2193\n", newRank) : "";
@@ -64,13 +64,13 @@ public class Rewards : MonoBehaviour {
 				Debug.Log ("Processing Next bit");
 				PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
 				PlayerData.getInstance ().saveData ();
-                SwitchPanels.changePanelStatic("pMain:activate,pRewards:deactivate");
+				SwitchPanels.changePanelStatic("pMain:activate,pRewardsStats:deactivate");
                 ObjectList.pickCurrentObjectsStatic();
                 break;
 			case 6:
 			case 8:
 			case 9:
-				SwitchPanels.changePanelStatic ("pSecureCall:activate,pRewards:deactivate");
+				SwitchPanels.changePanelStatic ("pSecureCall:activate,pRewardsStats:deactivate");
 				SecureCall.getInstance ().startTimer ();
                 break;
             default:
@@ -78,7 +78,7 @@ public class Rewards : MonoBehaviour {
 
                 // Fail gracefully.
 				PlayerData.getInstance ().saveData ();
-                SwitchPanels.changePanelStatic("pMain:activate,pRewards:deactivate");
+                SwitchPanels.changePanelStatic("pMain:activate,pRewardsStats:deactivate");
                 break;
         }
     }
