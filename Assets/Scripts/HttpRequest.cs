@@ -81,6 +81,8 @@ public class HttpRequest : MonoBehaviour {
 
 		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = false;
+
+		Webcam.getInstance ().stopCamera ();
 	}
 
 	public void endVisibleProcessDelayFailed(){
@@ -91,6 +93,8 @@ public class HttpRequest : MonoBehaviour {
 
 		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = true;
+
+		Webcam.getInstance ().startCamera ();
 	}
 
 	public void endVisibleProcessDelaySuccessful(){
@@ -101,6 +105,8 @@ public class HttpRequest : MonoBehaviour {
 
 		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = true;
+
+		Webcam.getInstance ().startCamera ();
 	}
 
 	public void makeRequest(byte[] imageData){

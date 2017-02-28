@@ -10,18 +10,14 @@ public class Gyro : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-		if (first) {
-			first = false;
-			init = GameObject.Find ("pARImageForeground").transform.position;
-		}
+		GameObject obj = GameObject.Find ("pARImageForeground0" + PlayerData.getInstance ().getCurrentNarrativeChunk ());
+		Vector3 init = obj.transform.position;
 		Vector3 input = Input.gyro.rotationRateUnbiased;
 		input = new Vector3 (-1f * input.y * multiplier, input.x * multiplier, input.z);
-		Vector3 current = GameObject.Find ("pARImageForeground").transform.position;
-		GameObject.Find ("pARImageForeground").transform.position = new Vector3 (input.x + current.x + 0.01f * (init.x - current.x), 
+		Vector3 current = obj.transform.position;
+		obj.transform.position = new Vector3 (input.x + current.x + 0.01f * (init.x - current.x), 
 																			 	 input.y + current.y + 0.01f * (init.y - current.y), 
 																			 	 current.z);
 	}
-	static Vector3 init;
-	static bool first = true;
 	static float multiplier = 0.1f;
 }

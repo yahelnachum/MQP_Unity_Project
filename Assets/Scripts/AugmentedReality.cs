@@ -65,9 +65,6 @@ public class AugmentedReality : MonoBehaviour {
 			List<GameObject> panel = StartGame.findInactive ("pError", "pAugmentedReality");
 			panel [0].SetActive (true);
 
-			PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
-			PlayerData.getInstance ().saveData ();
-
 		} else {
 			yield return new WaitForSeconds (minWaitTime);
 			SwitchPanels.changePanelStatic ("pAugmentedReality:deactivate,pRewards:activate,pARImageForeground0"+PlayerData.getInstance().getCurrentNarrativeChunk()+":deactivate");
