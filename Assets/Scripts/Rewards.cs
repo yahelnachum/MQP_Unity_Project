@@ -41,9 +41,16 @@ public class Rewards : MonoBehaviour {
         tGetCoins.text   = string.Concat("+$", earned.ToString());
         tTotalCoins.text = string.Concat("$", PlayerData.getInstance().addToMonies(earned).ToString());
 
+		setupCongrats ();
         // Add any SFX here.
 
     }
+
+	public static void setupCongrats(){
+		string foundObj = HttpRequest.getInstance ().getFoundObj ();
+		Text tCongrats = StartGame.findInactive ("tHeaderCongrats", "vMenu") [0].GetComponent<Text> ();
+		tCongrats.text = "Congratulations, you found a "+foundObj+"!";
+	}
 
 	void Start(){
 		Debug.Log ("Initializing sound object for tuts");

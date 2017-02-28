@@ -47,6 +47,7 @@ public class HttpRequest : MonoBehaviour {
 
 	private Text txtClarifai = null;
 	private Text txtCloud = null;
+	private string foundObj = "";
 
 	private HttpRequest(){
 	}
@@ -391,6 +392,7 @@ public class HttpRequest : MonoBehaviour {
 
 							if (tagAnalyzed.CompareTo (similarTag) == 0) {
 								foundCurrentObjects = true;
+								foundObj = currentObj;
 
 								l = responses.Length;
 								k = similarTags.Length;
@@ -450,6 +452,10 @@ public class HttpRequest : MonoBehaviour {
 		Debug.Log (Application.persistentDataPath);
 		System.IO.File.WriteAllBytes (Application.persistentDataPath +
 			"/image" + PlayerData.getInstance ().getCurrentNarrativeChunk () + ".jpg", imageByte);
+	}
+
+	public string getFoundObj(){
+		return foundObj;
 	}
 
 	private IEnumerator postWatson(byte[] imageByte, Text text)
