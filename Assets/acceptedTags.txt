@@ -47,9 +47,6 @@ baby,babies
 basket,baskets,woven
 cross,stake,stakes
 crown,crowns,king,kings,queen,queens
-halo,halos,holy
-jesus,christ
-virgin mary,mary
 wing,wings,bird,birds,flamingo,flamingos,parrot,parrots,jay,jays,angel,angels
 bridge,bridges
 house,houses,building,buildings
