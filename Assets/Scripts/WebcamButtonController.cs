@@ -13,5 +13,6 @@ public class WebcamButtonController : MonoBehaviour {
 
 	public void stopCamera(){
 		Webcam.getInstance ().stopCamera ();
+		Webcam.getInstance ().resetCameraZoom ();
 	}
 }

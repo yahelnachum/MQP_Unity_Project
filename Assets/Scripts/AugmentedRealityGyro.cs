@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class Gyro : MonoBehaviour {
+public class AugmentedRealityGyro : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

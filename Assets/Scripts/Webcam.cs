@@ -139,12 +139,17 @@ public class Webcam : MonoBehaviour{
 	/// </summary>
 	public void stopCamera(){
 
-        if (mCamera == null) return;
+		if (mCamera == null) return;
+		mCamera.Stop ();
+	}
+
+	public void resetCameraZoom(){
+
+		if (mCamera == null) return;
 
 		// reset the pinch and zoom of the camera and stop streaming it
 		RectTransform rectT = (RectTransform)pCameraStream.transform;
 		rectT.localScale = new Vector3 (minX, minY, 1f);
-		mCamera.Stop ();
 	}
 		
 	/// <summary>
