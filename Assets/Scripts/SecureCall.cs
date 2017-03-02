@@ -11,6 +11,11 @@ public class SecureCall : MonoBehaviour {
 		source.PlayOneShot(sound,1.0f);
 	}
 
+	void Start(){
+
+		startTimer ();
+	}
+
 	private static SecureCall secureCallInstance = null;
 
 	private SecureCall(){
@@ -34,8 +39,9 @@ public class SecureCall : MonoBehaviour {
 
 		Debug.Log ("Initializing sound object for call");
 		source = GetComponent<AudioSource>();
-		yield return new WaitForSeconds (46f);
 		Play1 ();
+		yield return new WaitForSeconds (46f);
+
 
 		SwitchPanels.changePanelStatic ("pMain:activate,pSecureCall:deactivate");
 		PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
