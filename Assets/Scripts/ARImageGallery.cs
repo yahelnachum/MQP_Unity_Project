@@ -63,8 +63,7 @@ public class ARImageGallery : MonoBehaviour {
 				//Vector2 vector = new Vector2 (touchZero.position.x / 230f, touchZero.position.y / 420f);
 				Vector2 vector = new Vector2 (touchZeroXPercent, (touchZeroYPercent - screenOffset) / screenPercent);
 				int i = getClosestPanelToVector (vector);
-				panels [i].GetComponent<RectTransform> ().anchorMin = vector;
-				panels [i].GetComponent<RectTransform> ().anchorMax = vector;
+				changeMinAndMaxAnchors (panels [i], vector);
 			}
 		} else if (Input.touchCount == 2) {
 			// Store both touches.
@@ -106,8 +105,19 @@ public class ARImageGallery : MonoBehaviour {
 				float newY = rectT.localScale.y + diffY;
 
 				rectT.localScale = new Vector3 (newX, newY, 1f);
+
+				float xDiff = newX / currentX;
+				float yDiff = newY / currentY;
+
+				Vector2 vector = new Vector2 (rectT.anchorMin.x * xDiff, rectT.anchorMin.y * yDiff);
+				changeMinAndMaxAnchors (panels [i], vector);
 			}
 		}
+	}
+
+	public void changeMinAndMaxAnchors(GameObject obj, Vector2 vector){
+		obj.GetComponent<RectTransform> ().anchorMin = vector;
+		obj.GetComponent<RectTransform> ().anchorMax = vector;
 	}
 
 	public int getClosestPanelToVector(Vector2 vector){
