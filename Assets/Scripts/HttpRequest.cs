@@ -84,6 +84,7 @@ public class HttpRequest : MonoBehaviour {
 		can.GetComponent<Button> ().interactable = false;
 
 		Webcam.getInstance ().stopCamera ();
+		SwitchPanels.changePanelStatic ("pCameraAnalyzing:activate");
 	}
 
 	public void endVisibleProcessDelayFailed(){
@@ -96,6 +97,7 @@ public class HttpRequest : MonoBehaviour {
 		can.GetComponent<Button> ().interactable = true;
 
 		Webcam.getInstance ().startCamera ();
+		SwitchPanels.changePanelStatic ("pCameraAnalyzing:deactivate");
 	}
 
 	public void endVisibleProcessDelaySuccessful(){
@@ -108,6 +110,7 @@ public class HttpRequest : MonoBehaviour {
 		can.GetComponent<Button> ().interactable = true;
 
 		Webcam.getInstance ().startCamera ();
+		SwitchPanels.changePanelStatic ("pCameraAnalyzing:deactivate");
 	}
 
 	public void makeRequest(byte[] imageData){
