@@ -62,8 +62,10 @@ public class ARImageGallery : MonoBehaviour {
 				Debug.Log ("TouchZeroPosition: " + touchZero.position);
 				//Vector2 vector = new Vector2 (touchZero.position.x / 230f, touchZero.position.y / 420f);
 				Vector2 vector = new Vector2 (touchZeroXPercent, (touchZeroYPercent - screenOffset) / screenPercent);
-				int i = getClosestPanelToVector (vector);
-				changeMinAndMaxAnchors (panels [i], vector);
+				GameObject closestObj = getClosestPanelToVector (vector);
+				if (closestObj != null) {
+					changeMinAndMaxAnchors (closestObj, vector);
+				}
 			}
 		} else if (Input.touchCount == 2) {
 			// Store both touches.
@@ -120,21 +122,22 @@ public class ARImageGallery : MonoBehaviour {
 		obj.GetComponent<RectTransform> ().anchorMax = vector;
 	}
 
-	public int getClosestPanelToVector(Vector2 vector){
-		int closestIndex = 0;
+	public GameObject getClosestPanelToVector(Vector2 vector){
+		GameObject closestObj = null;
 		float closestMag = 2f;
+		float maxAllowedDistance = 0.1f;
 		for (int i = 0; i < panels.Count; i++) {
 			if (narrativeNumbers [i] < PlayerData.getInstance ().getCurrentNarrativeChunk ()) {
 				Vector2 vector1 = panels [i].GetComponent<RectTransform> ().anchorMin;
 				float mag = (vector - vector1).sqrMagnitude;
 				Debug.Log ("Panel: " + i + " Magnetude: " + mag);
-				if (mag < closestMag) {
+				if (mag < closestMag && mag < maxAllowedDistance) {
 					closestMag = mag;
-					closestIndex = i;
+					closestObj = panels[i];
 				}
 			} 
 		}
 
-		return closestIndex;
+		return closestObj;
 	}
 }
