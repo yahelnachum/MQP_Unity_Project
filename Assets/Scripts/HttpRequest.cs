@@ -432,6 +432,7 @@ public class HttpRequest : MonoBehaviour {
 		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 3 ||
 			PlayerData.getInstance ().getCurrentNarrativeChunk () > 4) {
 
+			AugmentedRealityGyro.getInstance ().reInitializeForNarrativeChunk ();
 			GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
 			pAugmentedReality.SetActive (true);
 			AugmentedReality.getInstance ().setNewImage ();
