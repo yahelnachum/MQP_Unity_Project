@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
 public class ChatPanel : MonoBehaviour {
 
-    public static string getMessage()
+    private static TextSpawner textSpawner = null;
+
+    private TextSpawner GetTextSpawner()
+    {
+        if (textSpawner == null) {
+            GameObject chatPanel = GameObject.Find("chat_content");
+            Debug.Log(chatPanel.ToString());
+            textSpawner = new TextSpawner(200f, 1444f, chatPanel);
+        }
+        return textSpawner;
+    }
+
+    public static string GetMessage()
     {
         int number;
         string value;
@@ -24,7 +37,7 @@ public class ChatPanel : MonoBehaviour {
                 case 8: return "im at the louvre. where r u";
                 case 9: return "@ the prada";
                 case 10: return "i beat the round";
-                default: return "";
+                default: return "the app crashed :(";
             }
         };
         value = generator();
@@ -34,12 +47,41 @@ public class ChatPanel : MonoBehaviour {
 
     public string getMessageByInstance()
     {
-        return ChatPanel.getMessage();
+        return GetMessage();
     }
 
-    public void newMessage()
+    public GameObject makeNewChatEntry()
     {
+        return this.makeNewChatEntry(GetMessage());
+    }
 
+    public GameObject makeNewChatEntry(string text)
+    {
+        return GetTextSpawner().spawnText(text);
+    }
+
+    public GameObject makeNewChatEntryFromTextForm(string formname)
+    {
+        GameObject textForm = GameObject.Find(formname);
+        Text textComp = textForm.GetComponent<Text>();
+        string text = textComp.text;
+        textComp.text = "";
+        return this.makeNewChatEntry(text);
+    }
+
+    public void makeNewChatEntryNoReturn()
+    {
+        this.makeNewChatEntry();
+    }
+
+    public void makeNewChatEntryNoReturn(string text)
+    {
+        this.makeNewChatEntry(text);
+    }
+
+    public void makeNewChatEntryFromTextFormNoReturn(string formname)
+    {
+        this.makeNewChatEntryFromTextForm(formname);
     }
 
 }
