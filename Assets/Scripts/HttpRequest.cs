@@ -428,8 +428,16 @@ public class HttpRequest : MonoBehaviour {
 
 		pCamera.SetActive (false);
 
-		// go to augmented reality panel for chunks 3,5,6,7,8,9
-		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 3 ||
+		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 9) {
+			AugmentedRealityGyro.getInstance ().reInitializeForNarrativeChunk ();
+			GameObject pAugmentedReality = pCamera.transform.parent.FindChild ("pAugmentedReality").gameObject;
+			pAugmentedReality.SetActive (true);
+			AugmentedReality.getInstance ().setNewImage ();
+
+			GameObject obj = StartGame.findInactive ("bCamera", "vMenu")[0];
+			obj.GetComponent<Button> ().interactable = false;
+		}
+		else if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 3 ||
 			PlayerData.getInstance ().getCurrentNarrativeChunk () > 4) {
 
 			AugmentedRealityGyro.getInstance ().reInitializeForNarrativeChunk ();
