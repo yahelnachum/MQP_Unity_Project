@@ -63,5 +63,10 @@ public class AugmentedRealityGyro : MonoBehaviour {
 			curPosBackground.z);
 	}
 
+	public void resetGyro(){
+		foregroundObj.transform.position = initPosForeground;
+		backgroundObj.transform.position = initPosBackground;
+	}
+
 
 }
