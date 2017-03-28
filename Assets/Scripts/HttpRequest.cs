@@ -43,7 +43,8 @@ public class HttpRequest : MonoBehaviour {
 	private static HttpRequest httpRequestInstance = null;
 
 	private bool cloudsightRequestInProgress = false;
-	private Coroutine[] coroutines = new Coroutine[2]; 
+	//private Coroutine[] coroutines = new Coroutine[2];
+	//private Dictionary<byte[], Coroutine[]> coroutineRequests = new Dictionary<byte[], Coroutine[]> ();
 
 	private Text txtClarifai = null;
 	private Text txtCloud = null;
@@ -116,12 +117,13 @@ public class HttpRequest : MonoBehaviour {
 	public void makeRequest(byte[] imageData){
 		startVisibleProcessDelay ();
 
-		coroutines[0] = StartCoroutine(postClarifai(imageData));
+		//Coroutine[] currentRequests = new Coroutine[2];
 
-		if (cloudsightRequestInProgress == false) {
-			coroutines[1] = StartCoroutine(postCloudSight(imageData));
-			cloudsightRequestInProgress = true;
-		}
+		//currentRequests[0] = StartCoroutine(postClarifai(imageData));
+		StartCoroutine(postClarifai(imageData));
+		//currentRequests[1] = StartCoroutine(postCloudSight(imageData));
+
+		//coroutineRequests.Add (imageData, currentRequests);
 	}
 	/*
      * Build the html post body for a post without any image data.
@@ -352,7 +354,7 @@ public class HttpRequest : MonoBehaviour {
 			yield return www;
 			checkWWWForError(www);
 
-			Debug.Log(www.text);
+			Debug.Log("Cloudsight Response Text: " + www.text);
 
 			status = JSON.Parse(www.text)["status"].Value;
 			response = JSON.Parse(www.text)["name"].Value;
@@ -424,6 +426,7 @@ public class HttpRequest : MonoBehaviour {
 	private void switchToCorrectPanel(){
 		ObjectList.getInstance ().pickCurrentObjects ();
 		GameObject pCamera = GameObject.Find ("pCamera");
+		Webcam.getInstance ().resetCameraZoom ();
 		Webcam.getInstance ().stopCamera ();
 
 		pCamera.SetActive (false);
@@ -445,7 +448,7 @@ public class HttpRequest : MonoBehaviour {
 			pAugmentedReality.SetActive (true);
 			AugmentedReality.getInstance ().setNewImage ();
 		} else if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 4) {
-			//
+			Rewards.PrepareRewards ();
 			SwitchPanels.changePanelStatic ("pUpdate:activate");
 			UpdatePanel.startUpdate ();
 		} else {

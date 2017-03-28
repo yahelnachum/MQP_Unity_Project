@@ -10,10 +10,10 @@ public class AugmentedRealityGyro : MonoBehaviour {
 	private Vector3 initPosForeground;
 	private Vector3 initPosBackground;
 
-	const float gyroForegroundMultiplier = 0.15f;
-	const float gyroBackgroundMultiplier = 0.075f;
+	const float gyroForegroundMultiplier = 0.04f;
+	const float gyroBackgroundMultiplier = 0.02f;
 	const float foregroundPullbackMultiplier = 0.01f;
-	const float backgroundPullbackMultiplier = 0.001f;
+	const float backgroundPullbackMultiplier = 0.05f;
 
 	private AugmentedRealityGyro(){
 	}

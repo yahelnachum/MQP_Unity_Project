@@ -13,6 +13,8 @@ public class Webcam : MonoBehaviour{
 	private float maxX;
 	private float maxY;
 
+	private Texture2D snap = null;
+
 	private static Webcam webcam = null;
 
 	private Webcam(){}
@@ -35,6 +37,8 @@ public class Webcam : MonoBehaviour{
 	public void startCamera() {
 		
 		if (mCamera == null) {
+
+			snap = new Texture2D(0,0);
 
 			// get available webcam devices
 			WebCamDevice[] devices = WebCamTexture.devices;
@@ -181,7 +185,7 @@ public class Webcam : MonoBehaviour{
 		float newY = midY - newHeight / 2f;
 
 		Color[] array = mCamera.GetPixels (Mathf.RoundToInt(newX), Mathf.RoundToInt(newY), Mathf.RoundToInt(newWidth), Mathf.RoundToInt(newHeight));
-		Texture2D snap = new Texture2D (Mathf.RoundToInt(newWidth), Mathf.RoundToInt(newHeight));//mCamera.width, mCamera.height);
+		snap.Resize(Mathf.RoundToInt(newWidth), Mathf.RoundToInt(newHeight));//mCamera.width, mCamera.height);
         
 		snap.SetPixels(array);
         snap.Apply();
