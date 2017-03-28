@@ -76,8 +76,7 @@ public class HttpRequest : MonoBehaviour {
 	}
 
 	public void startVisibleProcessDelay(){
-		// TODO: TJ's code here
-
+	
 		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = false;
 
@@ -89,7 +88,6 @@ public class HttpRequest : MonoBehaviour {
 	}
 
 	public void endVisibleProcessDelayFailed(){
-		// TODO: TJ's code here
 
 		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = true;
@@ -97,12 +95,10 @@ public class HttpRequest : MonoBehaviour {
 		GameObject can = StartGame.findInactive ("bCancel", "vMenu") [0];
 		can.GetComponent<Button> ().interactable = true;
 
-		Webcam.getInstance ().startCamera ();
-		SwitchPanels.changePanelStatic ("pCameraAnalyzing:deactivate");
+		SwitchPanels.changePanelStatic ("pCameraAnalyzing:deactivate,pCameraAnalysisFailed:activate");
 	}
 
 	public void endVisibleProcessDelaySuccessful(){
-		// TODO: TJ's code here
 
 		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = true;
