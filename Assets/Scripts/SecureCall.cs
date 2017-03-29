@@ -3,12 +3,16 @@ using System.Collections;
 
 public class SecureCall : MonoBehaviour {
 
-	public AudioClip sound;
+	public AudioClip sound1;
+	public AudioClip sound2;
+	public AudioClip sound3;
+
+
 	private AudioSource source;
 
 	public void Play1 (){
 		Debug.Log ("PLAYING");
-		source.PlayOneShot(sound,1.0f);
+		source.PlayOneShot(sound1,1.0f);
 	}
 
 	void Start(){
@@ -41,7 +45,11 @@ public class SecureCall : MonoBehaviour {
 		source = GetComponent<AudioSource>();
 		Play1 ();
 		yield return new WaitForSeconds (46f);
+<<<<<<< Updated upstream
 
+=======
+		//Play1 ();
+>>>>>>> Stashed changes
 
 		SwitchPanels.changePanelStatic ("pMain:activate,pSecureCall:deactivate");
 		PlayerData.getInstance ().incrementCurrentNarrativeChunk ();
