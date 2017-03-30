@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37356424, g: 0.3811201, b: 0.35887662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356448, g: 0.3811204, b: 0.35887685, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7942,17 +7942,6 @@ MonoBehaviour:
           m_StringArgument: pMain:activate,pRewards:deactivate
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1015866440}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1015866443
@@ -12416,7 +12405,6 @@ GameObject:
   - 222: {fileID: 1538740631}
   - 114: {fileID: 1538740630}
   - 82: {fileID: 1538740633}
-  - 114: {fileID: 1538740632}
   - 114: {fileID: 1538740634}
   m_Layer: 5
   m_Name: pSecureCall
@@ -12480,22 +12468,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1538740628}
---- !u!114 &1538740632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1538740628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26538a1d7235410c8c4e1e7572d804c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  current: 
-  next: 
-  sound: {fileID: 8300000, guid: 9770dc8d1afd54adda0a983a3197f614, type: 3}
-  sound2: {fileID: 0}
-  analPress: 0
 --- !u!82 &1538740633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12581,7 +12553,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983e55697ea0e8b4c8cdb467504e01fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: 9c50765be6f9c4c918724e9148660476, type: 3}
+  sound1: {fileID: 8300000, guid: 49682ab309f9e4c9b9424753b1bb908c, type: 3}
+  sound2: {fileID: 8300000, guid: 49682ab309f9e4c9b9424753b1bb908c, type: 3}
+  sound3: {fileID: 8300000, guid: 9c50765be6f9c4c918724e9148660476, type: 3}
 --- !u!1 &1545780960
 GameObject:
   m_ObjectHideFlags: 0
