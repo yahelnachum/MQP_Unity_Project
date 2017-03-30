@@ -27,4 +27,17 @@ public class StartGame : MonoBehaviour {
 
 		return list;
 	}
+
+	public static List<GameObject> findObjectsContainingName(string partialObjName, GameObject root){
+		Transform[] children = root.GetComponentsInChildren<Transform>(true);
+
+		List<GameObject> list = new List<GameObject> ();
+		for (int i = 0; i < children.Length; i++) {
+			if (children [i].name.Contains (partialObjName)) {
+				list.Add(children [i].gameObject);
+			}
+		}
+
+		return list;
+	}
 }

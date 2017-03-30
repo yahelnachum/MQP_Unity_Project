@@ -35,7 +35,7 @@ public class HttpRequest : MonoBehaviour {
 	private const string BODY_CONTENT_TYPE_TEXT_PLAIN = "text/plain";
 	private const string BODY_CONTENT_PLACEHOLDER = "aoidfngoiefoi12097445";
 
-	private const string CLOUDSIGHT_TOKEN = "sSXwCsxn6h6KDlhv4e9iBw";
+	private const string CLOUDSIGHT_TOKEN = "4pOKD3RAvMEhUCDBkExAhA";
 	private const string CLARIFAI_TOKEN = "";
 	private const string CLARIFAI_CLIENT_ID = "j7yHzbxOlue-Q4NkEXTIl1UHllT3_UerH8TLn2Cu";
 	private const string CLARIFAI_CLIENT_SECRET = "dbNK8HdXVqGl4NbN-8U0v-KAJbPh40idRSvCd8vI";
@@ -43,14 +43,21 @@ public class HttpRequest : MonoBehaviour {
 	private static HttpRequest httpRequestInstance = null;
 
 	private bool cloudsightRequestInProgress = false;
-	//private Coroutine[] coroutines = new Coroutine[2];
-	//private Dictionary<byte[], Coroutine[]> coroutineRequests = new Dictionary<byte[], Coroutine[]> ();
+	private bool clarifaiRequestInProgress = false;
 
-	private Text txtClarifai = null;
-	private Text txtCloud = null;
+	private bool simulateClarifai = false;
+	private bool simulateCloudSight = false;
+
+	private bool simulateClarifaiCorrect = false;
+	private bool simulateCloudSightCorrect = false;
+
 	private string foundObj = "";
 
 	private HttpRequest(){
+	}
+
+	public void resetFoundObj(){
+		foundObj = "";
 	}
 
 	public static HttpRequest getInstance(){
@@ -63,20 +70,10 @@ public class HttpRequest : MonoBehaviour {
 		return httpRequestInstance;
 	}
 
-	public void setUpTextObjects(){
-
-		// get the text objects for output of http POST responses
-		//GameObject textWatson = GameObject.Find ("Watson");
-		//Text txtWatson = textWatson.GetComponent<Text> ();
-		//GameObject textClarifai = StartGame.findInactive ("ClarifaiOutput", "vMenu");
-		//txtClarifai = textClarifai.GetComponent<Text> ();
-		//GameObject textCloud = StartGame.findInactive ("CloudSightOutput", "vMenu");
-		//txtCloud = textCloud.GetComponent<Text> ();
-
-	}
-
 	public void startVisibleProcessDelay(){
 	
+		StartCoroutine (BarGraph.getInstance ().start ());
+
 		GameObject anal = StartGame.findInactive ("bAnalyze", "vMenu") [0];
 		anal.GetComponent<Button> ().interactable = false;
 
@@ -111,16 +108,64 @@ public class HttpRequest : MonoBehaviour {
 	}
 
 	public void makeRequest(byte[] imageData){
-		startVisibleProcessDelay ();
+		StartCoroutine (BarGraph.getInstance ().start ());
+		Webcam.getInstance ().stopCamera ();
+		SwitchPanels.changePanelStatic ("pCameraAnalyzing:activate");
+
+		clarifaiRequestInProgress = true;
+		cloudsightRequestInProgress = true;
+		if (!simulateClarifai) {
+			StartCoroutine (postClarifai (imageData));
+		} else {
+			StartCoroutine (SimulateClarifai ());
+		}
+
+		if (!simulateCloudSight) {
+			StartCoroutine (postCloudSight (imageData));
+		} else {
+			StartCoroutine (SimulateCloudSight ());
+		}
 
 		//Coroutine[] currentRequests = new Coroutine[2];
-
 		//currentRequests[0] = StartCoroutine(postClarifai(imageData));
-		StartCoroutine(postClarifai(imageData));
 		//currentRequests[1] = StartCoroutine(postCloudSight(imageData));
-
 		//coroutineRequests.Add (imageData, currentRequests);
 	}
+
+	private IEnumerator SimulateClarifai (){
+		yield return new WaitForSeconds (Random.value * 3.5f + 0.5f);
+
+		if (simulateClarifaiCorrect) {
+			foundObj = ObjectList.getInstance ().getCurrentObjects () [Random.Range (0, 3)][0].text;
+		}
+
+		clarifaiRequestInProgress = false;
+	}
+
+	private IEnumerator SimulateCloudSight (){
+		yield return new WaitForSeconds (Random.value * 5f + 10f);
+
+		if (simulateCloudSightCorrect) {
+			foundObj = ObjectList.getInstance ().getCurrentObjects () [Random.Range (0, 3)][0].text;
+		}
+
+		cloudsightRequestInProgress = false;
+		getDeepAnalysisMessageReady ();
+		SwitchPanels.changePanelStatic ("pDeepAnalysis:activate");
+	}
+
+	private void getDeepAnalysisMessageReady (){
+		GameObject messageTitle = StartGame.findInactive ("tDeepAnalysisMessageTitle", "pCamera")[0];
+		GameObject messageContent= StartGame.findInactive ("tDeepAnalysisMessageContent", "pCamera")[0];
+		if (foundObj == "") {
+			messageTitle.GetComponent<Text>().text = "Deep Analysis"+'\u2122'+" Failed!";
+			messageContent.GetComponent<Text>().text = "Please try analyzing another picture.";
+		} else {
+			messageTitle.GetComponent<Text>().text = "Deep Analysis"+'\u2122'+" Succeeded!";
+			messageContent.GetComponent<Text>().text = "Your Deep Analysis"+'\u2122'+" request has succeeded.";
+		}
+	}
+		
 	/*
      * Build the html post body for a post without any image data.
      */
@@ -311,6 +356,11 @@ public class HttpRequest : MonoBehaviour {
 		string[] responses = response.Split (spaceSplitter);
 
 		checkIfFoundObjects (responses, imageByte);
+		clarifaiRequestInProgress = false;
+	}
+
+	public bool isClarifaiRequestInProgress(){
+		return clarifaiRequestInProgress;
 	}
 
 	private IEnumerator postCloudSight(byte[] imageByte)
@@ -369,6 +419,9 @@ public class HttpRequest : MonoBehaviour {
 		checkIfFoundObjects (responses, imageByte);
 
 		cloudsightRequestInProgress = false;
+		Debug.Log ("FoundOBJ HERE897234: " + foundObj);
+		getDeepAnalysisMessageReady ();
+		SwitchPanels.changePanelStatic ("pDeepAnalysis:activate");
 	}
 
 	public void checkIfFoundObjects(string[] responses, byte[] imageByte){
@@ -408,14 +461,14 @@ public class HttpRequest : MonoBehaviour {
 
 		if (foundCurrentObjects) {
 
-			endVisibleProcessDelaySuccessful ();
+			//endVisibleProcessDelaySuccessful ();
 
 			saveJPG(imageByte);
 
-			switchToCorrectPanel ();
+			//switchToCorrectPanel ();
 
 		} else {
-			endVisibleProcessDelayFailed ();
+			//endVisibleProcessDelayFailed ();
 		}
 	}
 

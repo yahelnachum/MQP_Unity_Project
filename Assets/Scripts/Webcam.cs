@@ -37,7 +37,6 @@ public class Webcam : MonoBehaviour{
 	public void startCamera() {
 		
 		if (mCamera == null) {
-
 			snap = new Texture2D(0,0);
 
 			// get available webcam devices
@@ -79,6 +78,7 @@ public class Webcam : MonoBehaviour{
 		} else {
             mCamera.Play();
         }
+		HttpRequest.getInstance ().resetFoundObj ();
 	}
 
 	/// <summary>
