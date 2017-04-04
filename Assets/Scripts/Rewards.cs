@@ -88,7 +88,7 @@ public class Rewards : MonoBehaviour {
 			case 8:
 			case 9:
 				SwitchPanels.changePanelStatic ("pSecureCall:activate,pRewardsStats:deactivate");
-				SecureCall.getInstance ().startTimer ();
+				//SecureCall.getInstance ().startTimer ();
                 break;
             default:
                 Debug.Log("Default case reached for rewards panel: this is not a good thing! (tm)");
