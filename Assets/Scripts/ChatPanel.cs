@@ -17,6 +17,11 @@ public class ChatPanel : MonoBehaviour {
         return textSpawner;
     }
 
+    public void onOpen()
+    {
+        this.makeNewChatEntry();
+    }
+
     public static string GetMessage()
     {
         int number;

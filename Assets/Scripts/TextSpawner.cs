@@ -54,18 +54,20 @@ public class TextSpawner
         // add and set a text component
         Text textcomp = newobject.AddComponent<Text>();
         textcomp.text = text;
+        textcomp.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        textcomp.color = Color.black;
+        textcomp.fontSize = 100;
 
         // add and set a rect transform
         RectTransform rt = newobject.GetComponent<RectTransform>();
         rt.SetParent(this.parent.GetComponent<RectTransform>());
-        rt.anchorMin = new Vector2(this.nextPos.x, this.nextPos.y + this.height);
-        rt.anchorMax = new Vector2(this.nextPos.x + this.width, this.nextPos.y);
-
-        /*
-        rt.position = new Vector2(this.startPos.x, this.nextPos.y);
-        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, this.width);
-        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, this.height);
-         */
+        rt.localPosition = new Vector3(1f, 1f, 0f);
+        rt.pivot = new Vector3(1f, 1f, 1f);
+        rt.anchorMin = new Vector3(0f, 1f, 0f);
+        rt.anchorMax = new Vector3(1f, 1f, 0f);
+        rt.offsetMax = new Vector3(0f, -this.nextPos.y, 0f);
+        rt.sizeDelta = new Vector3(1f, this.height, 0f);
+        rt.localScale = new Vector3(1f, 1f, 1f);
 
         // advance the position 
         this.advanceNextPos();
