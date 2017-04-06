@@ -54,7 +54,7 @@ public class SecureCall : MonoBehaviour {
 			Debug.Log ("Start CallTime");
 
 			//source = GetComponent<AudioSource>();
-			StartCoroutine (StartCallTime ());
+			//StartCoroutine (StartCallTime ());
 
 			Debug.Log ("End CallTime");
 
@@ -64,6 +64,12 @@ public class SecureCall : MonoBehaviour {
 			Debug.Log ("already playing, chill");
 
 		}
+
+	}
+
+	public void clickAn (){
+
+		StartCoroutine (StartCallTime ());
 
 	}
 
