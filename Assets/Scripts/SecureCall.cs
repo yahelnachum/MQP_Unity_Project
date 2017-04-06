@@ -51,12 +51,12 @@ public class SecureCall : MonoBehaviour {
 			Debug.Log ("Play status: " + curPlay);
 
 
-			Debug.Log ("Start CallTime");
+			//Debug.Log ("Start CallTime");
 
 			//source = GetComponent<AudioSource>();
 			//StartCoroutine (StartCallTime ());
 
-			Debug.Log ("End CallTime");
+			//Debug.Log ("End CallTime");
 
 
 		} else {
