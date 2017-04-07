@@ -46,7 +46,7 @@ public class HttpRequest : MonoBehaviour {
 	private bool clarifaiRequestInProgress = false;
 
 	private bool simulateClarifai = false;
-	private bool simulateCloudSight = false;
+	private bool simulateCloudSight = true;
 
 	private bool simulateClarifaiCorrect = false;
 	private bool simulateCloudSightCorrect = false;
