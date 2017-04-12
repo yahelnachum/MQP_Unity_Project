@@ -285,7 +285,10 @@ public class HttpRequest : MonoBehaviour {
 		}
 
 		if (foundCurrentObjects) {
-			saveJPG(imageByte);
+			setAnalysisSucceeded (true);
+			saveJPG (imageByte);
+		} else {
+			analysisSucceeded = false;
 		}
 	}
 

@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using SimpleJSON;
 
 public class CloudSightRequest : HttpRequest {
 
 	public const string HEADER_AUTHORIZATION_CLOUDSIGHT = "CloudSight ";
-
 	private const string CLOUDSIGHT_TOKEN = "4pOKD3RAvMEhUCDBkExAhA";
+
+	private int requestIndex;
 
 	public CloudSightRequest(){
 		
 	}
 
-	public void initialize(byte[] imageByte){
+	public void initialize(byte[] imageByte, int requestIndex){
 		base.initialize (imageByte);
+		this.requestIndex = requestIndex;
 	}
 
 	public override IEnumerator analyze()
@@ -73,5 +76,41 @@ public class CloudSightRequest : HttpRequest {
 		checkIfFoundObjects (responses, image);
 
 		setAnalyzing (false);
+	}
+
+	public override IEnumerator postAnalyze(){
+		Debug.Log ("Cloudsight: Entering postAnalyze()");
+		while (isAnalyzing ()) {
+			Debug.Log ("Cloudsight postAnalyse: busy waiting");
+			yield return new WaitForSeconds (1f);
+		}
+
+		if (shouldShowDeepAnalysis ()) {
+			GameObject pDeepAnalysis = StartGame.findInactive ("pDeepAnalysis", "vMenu") [0];
+			GameObject pCamera = StartGame.findInactive ("pCamera", "vMenu") [0];
+
+			GameObject pDeepAnalysisCopy = Instantiate<GameObject> (pDeepAnalysis);
+			pDeepAnalysisCopy.name = "pDeepAnalysis" + requestIndex;
+
+			pDeepAnalysisCopy.transform.SetParent (pCamera.transform);
+			RectTransform rect = pDeepAnalysisCopy.GetComponent<RectTransform> ();
+			rect.sizeDelta = new Vector3 (1f, 1f, 1f);
+			rect.localScale = new Vector3 (1f, 1f, 1f);
+			rect.localPosition = new Vector3 (0f, 0f, 0f);
+			rect.offsetMax = new Vector3 (0f, 0f, 0f);
+
+			pDeepAnalysisCopy.SetActive (true);
+
+			GameObject messageTitle = StartGame.findInactive ("tDeepAnalysisMessageTitle", "pDeepAnalysis" + requestIndex) [0];
+			GameObject messageContent = StartGame.findInactive ("tDeepAnalysisMessageContent", "pDeepAnalysis" + requestIndex) [0];
+			if (hasAnalysisSucceeded ()) {
+				messageTitle.GetComponent<Text> ().text = "Deep Analysis" + '\u2122' + " Succeeded!";
+				messageContent.GetComponent<Text> ().text = "Your Deep Analysis" + '\u2122' + " request has succeeded.";
+			} else {
+				messageTitle.GetComponent<Text> ().text = "Deep Analysis" + '\u2122' + " Failed!";
+				messageContent.GetComponent<Text> ().text = "Please try analyzing another picture.";
+			}
+		}
+		Debug.Log ("Cloudsight: Exiting postAnalyze()");
 	}
 }

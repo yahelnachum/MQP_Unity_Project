@@ -8,8 +8,8 @@ public class HttpRequestManager : MonoBehaviour {
 	private List<HttpRequest> cloudsightRequests = new List<HttpRequest>();
 	private string foundObject = "";
 
-	private bool simulateClarifai = true;
-	private bool simulateCloudSight = true;
+	private bool simulateClarifai = false;
+	private bool simulateCloudSight = false;
 
 	private static HttpRequestManager instance = null;
 
@@ -30,7 +30,7 @@ public class HttpRequestManager : MonoBehaviour {
 
 		if (simulateClarifai) {
 			SimulatedClarifaiRequest simRequest = dummy.AddComponent<SimulatedClarifaiRequest> ();
-			simRequest.initialize (imageByte, 0.5f, 4.0f, AnalysisResponseEnum.Random);
+			simRequest.initialize (imageByte, 0.5f, 4.0f, AnalysisResponseEnum.Incorrect);
 			clarifaiRequest = simRequest;
 		} else {
 			clarifaiRequest = dummy.AddComponent<ClarifaiRequest> ();
@@ -46,7 +46,7 @@ public class HttpRequestManager : MonoBehaviour {
 			cloudsightRequests.Add (simRequest);
 		} else {
 			CloudSightRequest cloudRequest = dummy.AddComponent<CloudSightRequest> ();
-			cloudRequest.initialize (imageByte);
+			cloudRequest.initialize (imageByte, cloudsightRequests.Count);
 			cloudsightRequests.Add (cloudRequest);
 		}
 
