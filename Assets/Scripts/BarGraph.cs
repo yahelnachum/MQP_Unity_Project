@@ -75,37 +75,47 @@ public class BarGraph : MonoBehaviour {
 	}
 
 	public  IEnumerator timer (){
+		Debug.Log ("Starting Bar Graph Timer");
 		yield return new WaitForSeconds (3f);
+		Debug.Log ("Ending Bar Graph Timer");
 		timerExpired = true;
 
-		while (HttpRequest.getInstance ().isClarifaiRequestInProgress () ||
+		while (HttpRequestManager.getInstance().getClarifaiRequest().isAnalyzing() ||
 			animating[0] ||
 			animating[1] ||
 			animating[2] ) {
 			yield return new WaitForSeconds (0.5f);
 		}
-			
-		if (HttpRequest.getInstance ().getFoundObj () == "") {
-			SwitchPanels.changePanelStatic ("pCameraAnalysisFailed:activate");
-		} else {
+
+		Debug.Log ("BarGraph timer(): waiting for animations to finish");
+		if (HttpRequestManager.getInstance().getClarifaiRequest().hasAnalysisSucceeded()) {
+			Debug.Log ("BarGraph timer(): making next button visible");
 			yield return StartCoroutine(animateGraph(0.2f, 1f, pBarGraph));
 			GameObject nextButton = StartGame.findInactive("bNext", "pCameraAnalyzing")[0];
 			nextButton.SetActive (true);
+
+			Debug.Log ("BarGraph timer(): clearing requests");
+			HttpRequestManager.getInstance ().clearRequests ();
+		} else {
+			SwitchPanels.changePanelStatic ("pCameraAnalysisFailed:activate");
 		}
 	}
 		
 	const float fps = 60;
 
 	public IEnumerator animateBar(GameObject barObj, GameObject barPercent, GameObject tBarObject, int animatingIndex){
-		while(HttpRequest.getInstance().isClarifaiRequestInProgress() || !timerExpired){
+		Debug.Log ("Starting Bar Animation");
+		while(HttpRequestManager.getInstance().getClarifaiRequest().isAnalyzing() || !timerExpired){
 			yield return StartCoroutine (load (Random.value, Random.value*0.5f+0.5f, barObj, barPercent));
 		}
+		Debug.Log ("Ending Bar Animation 01");
 
-		if (HttpRequest.getInstance ().getFoundObj () != tBarObject.GetComponent<Text>().text) {
-			yield return StartCoroutine (load (Random.value * 0.2f + 0.05f, Random.value * 0.5f + 1.0f, barObj, barPercent));
-		} else{
+		if (HttpRequestManager.getInstance().getClarifaiRequest().getFoundObject() == tBarObject.GetComponent<Text>().text) {
 			yield return StartCoroutine (load (Random.value * 0.25f + 0.70f, Random.value * 0.5f + 1.0f, barObj, barPercent));
+		} else{
+			yield return StartCoroutine (load (Random.value * 0.2f + 0.05f, Random.value * 0.5f + 1.0f, barObj, barPercent));
 		}
+		Debug.Log ("Ending Bar Animation 02");
 
 		animating [animatingIndex] = false;
 	}

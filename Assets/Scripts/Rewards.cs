@@ -47,19 +47,23 @@ public class Rewards : MonoBehaviour {
     }
 
 	public static void setupCongrats(){
-		string foundObj = HttpRequest.getInstance ().getFoundObj ();
+		string foundObj = HttpRequestManager.getInstance ().getFoundObject ();
 		Text tCongrats = StartGame.findInactive ("tHeaderCongrats", "vMenu") [0].GetComponent<Text> ();
 		tCongrats.text = "Congratulations, you found "+getCorrectIndefiniteArticle(foundObj)+" "+foundObj+"!";
 	}
 
 	public static string getCorrectIndefiniteArticle(string obj){
-		char[] vowels = { 'a', 'e', 'i', 'p', 'u' };
-		for (int i = 0; i < vowels.Length; i++) {
-			if (obj.ToCharArray () [0] == vowels [i])
-				return "an";
+		if (obj.Length > 0) {
+			char[] vowels = { 'a', 'e', 'i', 'p', 'u' };
+			for (int i = 0; i < vowels.Length; i++) {
+				if (obj.ToCharArray () [0] == vowels [i])
+					return "an";
+			}
+
+			return "a";
 		}
 
-		return "a";
+		return "error";
 	}
 
 	void Start(){

@@ -78,7 +78,6 @@ public class Webcam : MonoBehaviour{
 		} else {
             mCamera.Play();
         }
-		HttpRequest.getInstance ().resetFoundObj ();
 	}
 
 	/// <summary>
@@ -190,6 +189,6 @@ public class Webcam : MonoBehaviour{
 		snap.SetPixels(array);
         snap.Apply();
 
-		HttpRequest.getInstance ().makeRequest (snap.EncodeToJPG ());
+		HttpRequestManager.getInstance ().makeRequest (snap.EncodeToJPG ());
     }
 }
