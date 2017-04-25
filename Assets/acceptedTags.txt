@@ -18,7 +18,7 @@ grapes,grape,vine,grapevine
 pear,pears
 empty chair,chair,chairs
 table,tables
-bowl,bowls
+bowl,bowls,containter,clay,cup
 candlestick,candlesticks
 cup,cups,jug,jugs
 dish,dishes
@@ -26,7 +26,7 @@ fork,forks
 knife,knives,cutlery
 spoon,spoons
 flower,flowers,lily,lilies,lilac,lilacs,rose,roses,petal,petals
-ocean,oceans,wave,waves
+ocean,oceans,wave,waves,sea
 snow,winter
 sunset,sunsets
 tree,trees,arbor,leaf,leaves
@@ -38,20 +38,19 @@ hat,hats
 quill,quills,pen,pens
 skull,skulls,skeleton,skeletons
 wheel,wheels,car,cars,wheelbarrow,wheelbarrows
-wig,wigs
 children,child,boy,boys,girl,girls
-dress,dresses
+dress,dresses,gown,gowns,costume,dressed
 vase,vases,ceramic,ceramics
-angel,angels
-baby,babies
-basket,baskets,woven
+angel,angels,saint,sistine,cherub
+baby,babies,child,girl,boy
+basket,baskets,woven,wooden
 cross,stake,stakes
 crown,crowns,king,kings,queen,queens
-wing,wings,bird,birds,flamingo,flamingos,parrot,parrots,jay,jays,angel,angels
+wing,wings,bird,birds,flamingo,flamingos,parrot,parrots,jay,jays,angel,angels,sistine,cherub
 bridge,bridges
 house,houses,building,buildings
 windmill,windmills
-ship,ships,boat,boats
+ship,ships,boat,boats,watercraft,sailboat,sail,galleon
 bow,bows
 gun,guns
 sword,swords
