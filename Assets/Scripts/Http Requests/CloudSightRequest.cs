@@ -93,6 +93,7 @@ public class CloudSightRequest : HttpRequest {
 			pDeepAnalysisCopy.name = "pDeepAnalysis" + requestIndex;
 
 			pDeepAnalysisCopy.transform.SetParent (pCamera.transform);
+			pDeepAnalysisCopy.transform.SetSiblingIndex (1);
 			RectTransform rect = pDeepAnalysisCopy.GetComponent<RectTransform> ();
 			rect.sizeDelta = new Vector3 (1f, 1f, 1f);
 			rect.localScale = new Vector3 (1f, 1f, 1f);

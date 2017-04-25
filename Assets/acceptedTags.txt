@@ -33,7 +33,7 @@ tree,trees,arbor,leaf,leaves
 water,waters,ocean,oceans,wave,waves,sea,seas,lake,lakes,rain
 waves,wave,ocean,oceans,sea,seas
 fire,fires
-hand,hands,arm,arms,palm
+hand,hands,arm,arms,palm,hold,holding
 hat,hats
 quill,quills,pen,pens
 skull,skulls,skeleton,skeletons

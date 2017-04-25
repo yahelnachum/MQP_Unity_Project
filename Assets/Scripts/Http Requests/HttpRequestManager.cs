@@ -30,7 +30,7 @@ public class HttpRequestManager : MonoBehaviour {
 
 		if (simulateClarifai) {
 			SimulatedClarifaiRequest simRequest = dummy.AddComponent<SimulatedClarifaiRequest> ();
-			simRequest.initialize (imageByte, 0.5f, 4.0f, AnalysisResponseEnum.Incorrect);
+			simRequest.initialize (imageByte, 0.5f, 4.0f, AnalysisResponseEnum.Random);
 			clarifaiRequest = simRequest;
 		} else {
 			clarifaiRequest = dummy.AddComponent<ClarifaiRequest> ();
