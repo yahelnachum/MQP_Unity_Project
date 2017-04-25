@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TutorialCameraStream : MonoBehaviour {
 
@@ -36,9 +37,10 @@ public class TutorialCameraStream : MonoBehaviour {
 
 	private IEnumerator StartTutorialTimer(){
 		if (PlayerData.getInstance ().getCurrentNarrativeChunk () == 0) {
+			SwitchPanels.changePanelStatic ("pCameraStreamTutorial:activate");
 			Play1 ();
 			yield return new WaitForSeconds (gopherIntroductionWaitTime);
-			SwitchPanels.changePanelStatic ("pCameraStreamTutorial:activate");
+			SwitchPanels.changePanelStatic ("pPinchAndZoomTutorial:activate");
 			Play2 ();
 			yield return new WaitForSeconds (gopherPinchAndZoomExplainationWaitTime);
 			SwitchPanels.changePanelStatic ("pPinchAndZoomTutorial:deactivate,pAnalyzeButtonTutorial:activate");
